@@ -39,7 +39,7 @@ var toTopButton = (function() {
         isActive = true;
     }
 
-    // Methods  
+    // Methods
 
     // Events
     $(window).scroll(function() {
@@ -272,7 +272,7 @@ var parallax = (function() {
         var scrollTop = $(window).scrollTop(),
             elementOffsetTop = scrollTop,
             parallaxOffset = elementOffsetTop / parallaxRate;
-        
+
         if (elementOffsetTop <= elemHeight) {
             $(".welcome-parallax_bg").css({
                 "-webkit-transform": "translateY(" + parallaxOffset + "px)",
@@ -362,7 +362,7 @@ var navbar = (function() {
         'hidden.bs.collapse': function() {
             scrollTop = $(window).scrollTop();
 
-            if (scrollTop === 0) { 
+            if (scrollTop === 0) {
                 makeDefault();
             }
         }
@@ -472,7 +472,7 @@ var menu = (function() {
     $(".menu_nav").on('click', 'a', function(e) {
         var elem = $(this);
 
-        // Filter items 
+        // Filter items
         var filterValue = elem.attr('data-filter');
         $menu.isotope({ filter: filterValue });
 
@@ -483,5 +483,3 @@ var menu = (function() {
     });
 
 })();
-
-

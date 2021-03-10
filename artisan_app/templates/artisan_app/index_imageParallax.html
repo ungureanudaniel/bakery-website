@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
             <div class="welcome_content">
-              <h1 class="welcome_content_heading">The Artisan Bakery</h1>
+              <h1 class="welcome_content_heading"><img src="{% static 'img/LOGO-ARTISAN-BAKERY.png' %}" alt="Artisan-Bakery-Logo" width="650" height="650"></h1>
               <p class="welcome_content_subheading">Cake & Coffee Shop</p>
               <ul class="welcome_content_logo">
                 <li><i class="icon ion-ios-minus-empty"></i></li>
@@ -19,7 +19,7 @@
                 <li><i class="icon ion-knife"></i></li>
                 <li><i class="icon ion-ios-minus-empty"></i></li>
               </ul>
-              <h3 class="welcome_content_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
+              <h3 class="welcome_content_caption">Goodies made with natural ingredients, love and passion.</h3>
               <div class="welcome_content_btn">
                 <a href="#section_about" class="btn btn-default">Discover</a>
               </div>
@@ -37,7 +37,8 @@
           <div class="col-sm-12">
             <h2 class="section_title"><span>&#8722; Our story &#8722;</span></h2>
             <hr class="section_title_line">
-            <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus sint est quidem excepturi rem officia fugit quia maxime explicabo nisi numquam, recusandae quisquam iste earum.</p>
+            <p class="section_caption">We are a small team of people with a big passion for tasty salty pies and simple, healthy cake. We love tasty recipes, those simple recipes in which you can easily identify high value, but delicate, subtle ingredients. This place was born out of our wish to offer everyone access to the recipes we cook at home for our family or for special occasions. All our recipes are made here, with lots of love, care, attention and passion. We love chocolate, we love dairy products, like organic cheese, yogurt, and localy produced fruits and vegetables, but more than that we love to combine them into tasty and healthy recipes. We wish that our passion brings added value to the recipes we are used to and also wish that you will find, in each recipe healthy and nutritious ingredients, season fruits and vegetables, dairy products from local farms, and as much as possible bio products. We do not use artificial food colorings, neither food improvers, nor any taste enhancers. We always opened to our customer’s wish, we are here to make your life tastier!</p>
+            <!-- <p class="section_caption">Suntem o echipă mică de pasionați de gustări sărate și prăjituri simple. Iubim bunul gust, acela simplu în care poți identifica ușor ingredientele de valoare, dar în același timp delicat și subtil. Acest loc s-a născut din dorința de oferi acces tuturor la prăjiturelele pe care noi le gătim acasă pentru familia și copiii noștri. Toate produsele noastre sunt făcute cu multă dragoste, grijă, atenție și cu multă pasiune. Ne place ciocolata, ne plac brânzeturile și iaurturile, fructele și legumele, dar mai ales, ne place să le combinăm în rețete delicioase și hrănitoare. Ne dorim ca pasiunea noastră să aducă un plus de valoare plăcintelor și prăjiturelelor cu care suntem obișnuiți și să descoperiți ca în fiecare produs își găsesc locul ingrediente sănătoase și hrănitoare, legume/fructe de sezon, lactate de la producători locali și pe cât posibil un strop de îndrăzneală cu produse bio. Nu folosim coloranti artificiali, nu folosim aditivi, nu folosim amelioratori si nici potentiatori de gust. Suntem mereu deschisi dorintelor si propunerilor voastra, suntem aici sa va facem viata mai gustoasa!</p> -->
           </div>
         </div> <!-- .row -->
       </div> <!-- .container -->
@@ -81,25 +82,27 @@
           </div>
         </div>
         <div class="row">
+          {% for people in team %}
           <div class="col-sm-4">
             <div class="team__item">
               <div class="team__item_photo">
-                <img class="img-responsive" src="{% static 'img/team_photo_1.jpg' %}' %}" alt="...">
+                <img class="img-responsive" src="{{ people.photo.url }}" alt="...">
               </div>
               <div class="team__item_name">
-                <h3>John Doe</h3>
+                <h3>{{ people.first_name }} {{ people.last_name }}</h3>
               </div>
               <div class="team__item_overlay">
-                <p class="team__item_profession">Master chef</p>
+                <p class="team__item_profession">{{ people.job|title }}</p>
                 <ul class="team__item_social">
-                  <li class="social_icon"><a href="#"><i class="icon ion-social-facebook-outline"></i></a></li>
+                  <li class="social_icon"><a href="{{ people.facebook }}"><i class="icon ion-social-facebook-outline"></i></a></li>
                   <li class="social_icon"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
-                  <li class="social_icon"><a href="#"><i class="icon ion-social-instagram-outline"></i></a></li>
+                  <li class="social_icon"><a href="{{ people.insta }}"><i class="icon ion-social-instagram-outline"></i></a></li>
                 </ul>
               </div>
             </div> <!-- .team_item -->
           </div>
-          <div class="col-sm-4">
+          {% endfor %}
+          <!-- <div class="col-sm-4">
             <div class="team__item">
               <div class="team__item_photo">
                 <img class="img-responsive" src="{% static 'img/team_photo_2.jpg' %}' %}" alt="...">
@@ -116,8 +119,8 @@
                 </ul>
               </div>
             </div> <!-- .team_item -->
-          </div>
-          <div class="col-sm-4">
+          <!-- </div> -->
+          <!-- <div class="col-sm-4">
             <div class="team__item">
               <div class="team__item_photo">
                 <img class="img-responsive" src="{% static 'img/team_photo_3.jpg' %}' %}" alt="...">
@@ -134,8 +137,9 @@
                 </ul>
               </div>
             </div> <!-- .team_item -->
-          </div>
-        </div> <!-- .row -->
+          </div><!-- .row -->
+
+        </div>
       </div> <!-- .container -->
     </section>
 
@@ -151,27 +155,39 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <ul class="nav nav-tabs menu_nav">
-              <li role="presentation" class="active"><a href="#" role="tab" data-filter=".menu_breakfast">Breakfast</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".menu_lunch">Lunch</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".menu_dinner">Dinner</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".menu_drinks">Drinks</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".menu_desserts">Desserts</a></li>
+            <ul class="nav nav-tabs menu_nav ">
+              {% for cat in recipe_categories %}
+              <li role="presentation"><a href="#" role="tab" name="{{ cat.slug }}" data-filter="{{ cat.slug }}">{{ cat.title }}</a></li>
+              {% endfor %}
+              <!-- <li role="presentation" class="active"><a href="#" role="tab" data-filter=".tarte_dulci">Tarte dulci</a></li>
+              <li role="presentation"><a href="#" role="tab" data-filter=".torturi">Torturi</a></li>
+              <li role="presentation"  ><a href="#" role="tab" data-filter=".biscuiti">Biscuiti</a></li>
+              <li role="presentation"  ><a href="#" role="tab" data-filter=".sarate">Sarate</a></li>
+              <li role="presentation"  ><a href="#" role="tab" data-filter=".prajituri_diverse">Prajituri diverse</a></li>
+              <li role="presentation"  ><a href="#" role="tab" data-filter=".paine_cu_maia">Paine cu maia</a></li>
+              <li role="presentation"  ><a href="#" role="tab" data-filter=".cafea">Cafea</a></li> -->
             </ul>
           </div>
         </div>
 
         <div class="row menu__grid">
-          <div class="col-sm-4 menu__item menu_breakfast">
+          <!-- {% if recipe_categories %} -->
+
+            {% for recipe in menu %}
+          <div class="col-sm-4 menu__item .menu_breakfast">
             <div class="menu__item_hover">
-              <img src="{% static 'img/breakfast_1.jpg' %}' %}" class="img-responsive" alt="...">
+
+              <img src="{{ recipe.photo.url }}" class="img-responsive" alt="...">
               <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$6.5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
+                <h3>{{ recipe.recipe_name|title }} <span class="price">{{ recipe.price_tag }}</span></h3>
+                <p class="overlay_info">{{ recipe.description }}</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-4 menu__item menu_breakfast">
+            {% endfor %}
+          <!-- {% endif %} -->
+
+          <!-- <div class="col-sm-4 menu__item Sarate">
             <div class="menu__item_hover">
               <img src="{% static 'img/breakfast_2.jpg' %}' %}" class="img-responsive" alt="...">
               <div class="menu__item_overlay">
@@ -449,7 +465,7 @@
                 <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div> <!-- .row -->
       </div> <!-- .container -->
     </section>
@@ -459,8 +475,10 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <h1 class="slogan_title">&#8722; The Artisan Bakery &#8722;</h1>
-            <p class="slogan_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, cumque, quia. Laboriosam eveniet suscipit obcaecati corrupti quam.</p>
+            <!-- {{ slogans }} -->
+            <h1 class="slogan_title">&#8722; {{ slogans.brand }} &#8722;</h1>
+            <p class="slogan_caption">{{ slogans.text|safe }}</p>
+
           </div>
         </div> <!-- .row -->
       </div> <!-- .container -->
@@ -470,19 +488,23 @@
     <section class="section_gallery" id="section_gallery">
       <div class="container">
         <div class="row">
+
           <div class="col-sm-12">
-            <h2 class="section_title">&#8722; Gallery &#8722;</h2>
+            <h2 class="section_title">&#8722; Galerie foto &#8722;</h2>
             <hr class="section_title_line">
-            <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam iure, quos maxime amet nostrum reiciendis, provident quisquam nulla!</p>
+            <p class="section_caption"></p>
           </div>
+
         </div> <!-- .row -->
         <div class="row gallery__grid">
+          {% for item in feat_pics %}
           <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_1.jpg' %}' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_1.jpg' %}' %}" class="img-responsive" alt="...">
+            <a href="{{ item.photo.url }}" data-lightbox="gallery">
+              <img src="{{ item.photo.url }}" class="img-responsive" alt="{{ item.title }}">
             </a>
           </div>
-          <div class="col-sm-4 col-xs-6 gallery__item">
+          {% endfor %}
+          <!-- <div class="col-sm-4 col-xs-6 gallery__item">
             <a href="{% static 'img/gallery_2.jpg' %}' %}" data-lightbox="gallery">
               <img src="{% static 'img/gallery_2.jpg' %}' %}" class="img-responsive" alt="...">
             </a>
@@ -526,7 +548,7 @@
             <a href="{% static 'img/gallery_10.jpg' %}" data-lightbox="gallery">
               <img src="{% static 'img/gallery_10.jpg' %}" class="img-responsive" alt="...">
             </a>
-          </div>
+          </div> -->
         </div> <!-- .row -->
       </div> <!-- .container -->
     </section>
@@ -549,18 +571,20 @@
 
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
+                {% for comment in comm %}
                 <div class="item active">
-                  <p class="review_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate atque eveniet, aut enim quasi eaque repellendus hic, provident tempora sint nulla totam quo nemo velit labore magnam quaerat molestias ad veritatis voluptatibus nobis molestiae illum!</p>
-                  <h5 class="review_author">&#8722; Franz Kafka &#8722;</h5>
+                  <p class="review_text">{{ comment.content|safe }}</p>
+                  <h5 class="review_author">&#8722; Daniel &#8722;</h5>
                 </div>
-                <div class="item">
+                {% endfor %}
+                <!-- <div class="item">
                   <p class="review_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate atque eveniet, aut enim quasi eaque repellendus hic, provident tempora sint nulla totam quo nemo velit labore magnam quaerat molestias ad veritatis voluptatibus nobis molestiae illum!</p>
                   <h5 class="review_author">&#8722; Ernest Hemingway &#8722;</h5>
                 </div>
                 <div class="item">
                   <p class="review_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate atque eveniet, aut enim quasi eaque repellendus hic, provident tempora sint nulla totam quo nemo velit labore magnam quaerat molestias ad veritatis voluptatibus nobis molestiae illum!</p>
                   <h5 class="review_author">&#8722; Pablo Picasso &#8722;</h5>
-                </div>
+                </div> -->
 
                 <!-- Controls -->
                 <a class="left carousel-control" href="#carousel-review" role="button" data-slide="prev">
@@ -871,69 +895,7 @@
         </div> <!-- .row -->
       </div> <!-- .container -->
     </section>
+    {% include 'artisan_app/contact_form.html' %}
 
-    <!-- section reservation -->
-    <section class="section_reservation" id="section_reservation">
-      <div class="section_row">
-        <div class="col-md-5">
-          <div class="reservation_img"></div>
-        </div>
-        <div class="col-md-7">
-          <div class="reservation_form_body">
-            <h3 class="reservation_form_title">Write us</h3>
-            <hr class="section_title_line">
-            <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <form class="reservation_form" id="reservation__form">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label class="sr-only" for="reservation__name">Full Name</label>
-                    <input type="text" class="form-control" id="reservation__name" name="reservation__name" placeholder="Full Name">
-                    <div class="help-block"></div>
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only" for="reservation__phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="reservation__phone" name="reservation__phone" placeholder="Phone Number">
-                    <div class="help-block"></div>
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only" for="reservation__phone">Your e-mail</label>
-                    <input type="email" class="form-control" name="reservation__email" id="reservation__email" placeholder="Your e-mail">
-                    <div class="help-block"></div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label class="sr-only" for="reservation__people">Number of persons</label>
-                    <select class="form-control" id="reservation__people" name="reservation__people">
-                      <option value="1" selected="">1 Person</option>
-                      <option value="2">2 Persons</option>
-                      <option value="3">3 Persons</option>
-                      <option value="4">4 Persons</option>
-                      <option value="5">5 Persons</option>
-                      <option value="6">6 Persons</option>
-                    </select>
-                    <div class="help-block"></div>
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only" for="reservation__date">Date</label>
-                    <input type="date" class="form-control" name="reservation__date" id="reservation__date" value="2017-10-09">
-                    <div class="help-block"></div>
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only" for="reservation__time">Time</label>
-                    <input type="time" class="form-control" id="reservation__time" value="19:00" name="reservation__time">
-                    <div class="help-block"></div>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-default">Reserve a table</button>
-                </div>
-              </div> <!-- .row -->
-            </form>
-          </div> <!-- .reservation_form_body -->
-        </div>
-      </div> <!-- .section_row -->
-    </section>
 
     {% endblock %}

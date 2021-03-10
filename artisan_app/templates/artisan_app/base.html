@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static 'favicon/favicon_Groggery.ico' %}">
-    <link rel="stylesheet" href="{% static 'css/odometer-theme-minimal.css' %}" />
+    <link rel="stylesheet" href="{% static 'plugins/odometer/odometer-theme-minimal.css' %}" rel="stylesheet">
 
     <title>The Artisan Bakery | Cake & Coffee Shop</title>
 
@@ -115,55 +115,7 @@
         <!-- <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="map" src="https://maps.google.com/maps?q=pelicanului%2013&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div> -->
       </div> <!-- / .section_row -->
     </div> <!-- / .section_map -->
-
-    <!-- section footer -->
-    <footer class="section_footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-lg-3">
-            <h3 class="section_footer_heading">Contacts</h3>
-            <p><i class="icon ion-ios-location-outline"></i> 500461 Str. Pelicanului 13, Brasov, RO</p>
-            <p><i class="icon ion-ios-telephone-outline"></i> +40 768 662 612</p>
-            <p><i class="icon ion-ios-email-outline"></i> contact@artisanbakery.ro</p>
-          </div>
-          <div class="col-sm-6 col-lg-3">
-            <h3 class="section_footer_heading">Follow us</h3>
-            <!-- <p><b>Download our app:</b></p>
-            <ul>
-              <li class="app_icon"><a href="#"><i class="icon ion-social-apple-outline"></i></a></li>
-              <li class="app_icon"><a href="#"><i class="icon ion-social-android-outline"></i></a></li>
-              <li class="app_icon"><a href="#"><i class="icon ion-social-windows-outline"></i></a></li>
-            </ul> -->
-            <div class="social">
-              <ul>
-                <li><p><b>Social: </b></p></li>
-                <li class="social_icon"><a href="#"><i class="icon ion-social-facebook-outline"></i></a></li>
-                <li class="social_icon"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
-                <li class="social_icon"><a href="#"><i class="icon ion-social-instagram-outline"></i></a></li>
-                <li class="social_icon"><a href="#"><i class="ion-social-foursquare"></i></a></li>
-              </ul>
-            </div> <!-- .social -->
-          </div>
-          <div class="col-sm-6 col-lg-3">
-            <h3 class="section_footer_heading">Opening hours</h3>
-            <p><b>Mon-Fri: </b>9 AM - 4 PM</p>
-            <p><b>Sat: </b>11 AM - 1 PM</p>
-          </div>
-          <div class="col-sm-6 col-lg-3">
-            <h3 class="section_footer_heading">Support</h3>
-            <p><a href="#">Help & Support</a></p>
-            <p><a href="#">Privacy Policy</a></p>
-            <p><a href="#">Terms & Conditions</a></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <hr>
-            <p class="footer_info">&#169; 2017 Artisan Bakery. All rights reserved.</p>
-          </div>
-        </div> <!-- .row -->
-      </div> <!-- .container -->
-    </footer>
+    {% include "artisan_app/footer.html" %}
 
     <!-- JS
     ================================================== -->

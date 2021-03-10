@@ -1,77 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="assets/favicon/favicon_Groggery.ico">
-
-    <title>Events | Groggery</title>
-
-    <!-- CSS Plugins -->
-    <link href="assets/plugins/lightbox/dist/css/lightbox.css" rel="stylesheet">
-    <link href="assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css">
-
-    <!-- CSS Global -->
-    <link href="assets/css/styles.css" rel="stylesheet">
-
-  </head>
-  <body data-spy="scroll" data-target=".navbar" data-offset="70">
-
-    <!--  NAVBAR
-    ================================================== -->
-
-    <!-- navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
-            <span class="sr-only">Menu</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index_default.html">Groggery</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar__collapse">
-          <ul class="nav navbar-nav navbar-right">
-
-            <!-- General links -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <i class="icon ion-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="index_default.html">Home Image</a></li>
-                <li><a href="index_imageParallax.html">Home Parallax</a></li>
-                <li><a href="index_slider.html">Home Slider</a></li>
-                <li><a href="index_video.html">Home Video</a></li>
-              </ul>
-            </li>
-            <li><a href="about.html">About</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <i class="icon ion-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="menu_image.html">Image Menu</a></li>
-                <li><a href="menu_text.html">Text Menu</a></li>
-              </ul>
-            </li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li class="active"><a href="events.html">Events</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <i class="icon ion-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="blog.html">Blog Page</a></li>
-                <li><a href="blog_post.html">Blog Post Page</a></li>
-              </ul>
-            </li>
-            <li><a href="reservation.html">Reservation</a></li>
-            <li><a href="contacts.html">Contacts</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container -->
-    </nav>
+{% extends 'artisan_app/base.html' %}
+{% load static %}
+{% block content %}
 
       <!-- HEADER
       ================================================== -->
@@ -87,7 +16,7 @@
 
               <!-- Breadcrumbs -->
               <ol class="breadcrumb">
-                <li><a href="index_default.html">Home</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
                 <li class="active">Events</li>
               </ol>
 
@@ -123,7 +52,7 @@
                         <li><i class="icon ion-ios-clock-outline"></i> 19:30</li>
                       </ul>
                       <div class="events-item__content_extra">
-                        <a href="reservation.html" class="btn btn-default">Book now</a>
+                        <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
                       </div>
                     </div>
                   </div>
@@ -139,7 +68,7 @@
                         <li><i class="icon ion-ios-clock-outline"></i> 19:00</li>
                       </ul>
                       <div class="events-item__content_extra">
-                        <a href="reservation.html" class="btn btn-default">Book now</a>
+                        <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
                       </div>
                     </div>
                   </div>
@@ -155,7 +84,7 @@
                         <li><i class="icon ion-ios-clock-outline"></i> 20:00</li>
                       </ul>
                       <div class="events-item__content_extra">
-                        <a href="reservation.html" class="btn btn-default">Book now</a>
+                        <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
                       </div>
                     </div>
                   </div>
@@ -171,7 +100,7 @@
                         <li><i class="icon ion-ios-clock-outline"></i> 19:30</li>
                       </ul>
                       <div class="events-item__content_extra">
-                        <a href="reservation.html" class="btn btn-default">Book now</a>
+                        <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
                       </div>
                     </div>
                   </div>
@@ -198,7 +127,7 @@
             <div class="col-sm-6">
               <div class="event_card">
                 <div class="event_card__img">
-                  <img src="assets/img/events_1.jpg" class="img-responsive" alt="...">
+                  <img src="{% static '/img/events_1.jpg' %}" class="img-responsive" alt="...">
                 </div>
                 <div class="event_card__body">
                   <div class="event_card__date">
@@ -218,7 +147,7 @@
                   </div>
                   <hr>
                   <div class="event_card__btn">
-                    <a href="reservation.html" class="btn btn-default">Book now</a>
+                    <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
                   </div>
                 </div>
               </div>
@@ -226,7 +155,7 @@
             <div class="col-sm-6">
               <div class="event_card">
                 <div class="event_card__img">
-                  <img src="assets/img/drinks_3.jpg" class="img-responsive" alt="...">
+                  <img src="{% static '/img/drinks_3.jpg' %}" class="img-responsive" alt="...">
                 </div>
                 <div class="event_card__body">
                   <div class="event_card__date">
@@ -246,17 +175,17 @@
                   </div>
                   <hr>
                   <div class="event_card__btn">
-                    <a href="reservation.html" class="btn btn-default">Book now</a>
+                    <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
                   </div>
                 </div>
               </div>
-            </div>            
+            </div>
           </div> <!-- .row -->
           <div class="row">
             <div class="col-sm-6">
               <div class="event_card">
                 <div class="event_card__img">
-                  <img src="assets/img/slider_bg2.jpg" class="img-responsive" alt="...">
+                  <img src="{% static '/img/slider_bg2.jpg' %}" class="img-responsive" alt="...">
                 </div>
                 <div class="event_card__body">
                   <div class="event_card__date">
@@ -276,7 +205,7 @@
                   </div>
                   <hr>
                   <div class="event_card__btn">
-                    <a href="reservation.html" class="btn btn-default">Book now</a>
+                    <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
                   </div>
                 </div>
               </div>
@@ -284,7 +213,7 @@
             <div class="col-sm-6">
               <div class="event_card">
                 <div class="event_card__img">
-                  <img src="assets/img/events_jazz.jpg" class="img-responsive" alt="...">
+                  <img src="{% static '/img/events_jazz.jpg' %}" class="img-responsive" alt="...">
                 </div>
                 <div class="event_card__body">
                   <div class="event_card__date">
@@ -304,12 +233,12 @@
                   </div>
                   <hr>
                   <div class="event_card__btn">
-                    <a href="reservation.html" class="btn btn-default">Book now</a>
+                    <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
                   </div>
                 </div>
               </div>
-            </div>            
-          </div> <!-- .row -->          
+            </div>
+          </div> <!-- .row -->
         </div> <!-- .container -->
       </section>
 
@@ -350,82 +279,4 @@
           </div> <!-- .row -->
         </div> <!-- .container -->
       </section>
-
-      <!-- section map -->
-      <div class="section_map">
-        <div class="section_row">
-          <div id="map"></div>
-        </div> <!-- / .section_row -->
-      </div> <!-- / .section_map -->
-
-      <!-- section footer -->
-      <footer class="section_footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6 col-lg-3">
-              <h3 class="section_footer_heading">Contacts</h3>
-              <p><i class="icon ion-ios-location-outline"></i> 10987 1st Avenue, Lorem City, CA</p>
-              <p><i class="icon ion-ios-telephone-outline"></i> +1 789 123 45 44</p>
-              <p><i class="icon ion-ios-email-outline"></i> admin@groggery.com</p>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <h3 class="section_footer_heading">Follow us</h3>
-              <p><b>Download our app:</b></p>
-              <ul>
-                <li class="app_icon"><a href="#"><i class="icon ion-social-apple-outline"></i></a></li>
-                <li class="app_icon"><a href="#"><i class="icon ion-social-android-outline"></i></a></li>
-                <li class="app_icon"><a href="#"><i class="icon ion-social-windows-outline"></i></a></li>
-              </ul>
-              <div class="social">
-                <ul>
-                  <li><p><b>Social: </b></p></li>
-                  <li class="social_icon"><a href="#"><i class="icon ion-social-facebook-outline"></i></a></li>
-                  <li class="social_icon"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
-                  <li class="social_icon"><a href="#"><i class="icon ion-social-instagram-outline"></i></a></li>
-                  <li class="social_icon"><a href="#"><i class="ion-social-foursquare"></i></a></li>
-                </ul>
-              </div> <!-- .social -->
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <h3 class="section_footer_heading">Opening hours</h3>
-              <p><b>Mon: </b>3PM - 9PM</p>
-              <p><b>Tue-Fri: </b>11AM - 12PM</p>
-              <p><b>Sat-Sun: </b>9AM - 12PM</p>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <h3 class="section_footer_heading">Support</h3>
-              <p><a href="#">Help & Support</a></p>
-              <p><a href="#">Privacy Policy</a></p>
-              <p><a href="#">Terms & Conditions</a></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <hr>
-              <p class="footer_info">&#169; 2017 Groggery. All rights reserved.</p>
-            </div>
-          </div> <!-- .row -->
-        </div> <!-- .container -->
-      </footer>
-      
-    <!-- JS
-    ================================================== -->
-
-    <!-- JS Global -->
-    <script src="assets/plugins/jquery/jquery-1.12.4.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    
-    <!-- JS Plugins -->
-    <script src="assets/plugins/lightbox/dist/js/lightbox.min.js"></script>
-    <script src="assets/plugins/isotope/isotope.pkgd.min.js"></script>
-    <script src="assets/plugins/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    
-    <!-- JS Custom -->
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/google_maps.js"></script>
-
-    <!-- Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTGnDWmYKPhKslCvPfkrcZDpgT_QMHT0s&callback=initMap" async defer></script>
-
-  </body>
-</html>
+{% endblock %}

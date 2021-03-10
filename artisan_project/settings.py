@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'artisan_app',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +152,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 #----------------MEDIA FILES STORAGE SETTINGS--------------------------
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+#-----------------------EMAIL SETTINGS-----------------------------------------
+EMAIL_HOST = '???'
+EMAIL_PORT = '???'
+EMAIL_USER = 'contact@artisanbakery.ro'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True

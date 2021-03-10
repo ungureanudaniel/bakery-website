@@ -1,7 +1,7 @@
 from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
-from .views import home_view, about_view, blog_view, blog_post_view, contacts_view, menu_view, gallery_view, events_view
+from .views import home_view, about_view, blog_view, blog_post_view, contacts_view, menu_view, gallery_view, events_view, reservation_view
 
 
 urlpatterns = [
@@ -13,5 +13,7 @@ urlpatterns = [
     path('menu/', menu_view, name='menu'),
     path('gallery/', gallery_view, name='gallery'),
     path('events/', events_view, name='events'),
+    path('reservation/', reservation_view, name='reservation'),
+
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,6 +1,62 @@
-{% extends 'artisan_app/base.html' %}
+
 {% load static %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon_Groggery.ico">
+
+    <title>Gallery | {{ slogans.brand }} </title>
+
+    <!-- CSS Plugins -->
+    <link href="{% static 'plugins/lightbox/dist/css/lightbox.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/flickity/flickity.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/ionicons/css/ionicons.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- CSS Global -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+  </head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="70">
+
+    <!--  NAVBAR
+    ================================================== -->
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index_default.html">{{ slogans.brand }}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- General links -->
+            <li class="dropdown">
+              <a href="{% url 'home' %}" role="button">Home <i class="icon ion-chevron-down"></i></a>
+            </li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'menu' %}">Image Menu</a></li>
+            <li class="active"><a href="{% url 'gallery' %}">Gallery</a></li>
+            <li><a href="{% url 'events' %}">Events</a></li>
+            <li><a href="{% url 'blog' %}">Blog Page</a></li>
+            <li><a href="{% url 'contacts' %}">Contacts</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+
       <!-- CONTENT
       ================================================== -->
 
@@ -18,7 +74,7 @@
 
               <!-- Breadcrumbs -->
               <ol class="breadcrumb">
-                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="index_default.html">Home</a></li>
                 <li class="active">Gallery</li>
               </ol>
 
@@ -39,12 +95,16 @@
             </div>
           </div> <!-- .row -->
           <div class="row gallery__grid">
+            {% for item in int_photos %}
             <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_1.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_1.jpg' %}" class="img-responsive" alt="...">
+
+              <a href="{{ item.photo.url }}" data-lightbox="gallery">
+                <img src="{{ item.photo.url }}" class="img-responsive" alt="...">
               </a>
+
             </div>
-            <div class="col-sm-4 col-xs-6 gallery__item">
+            {% endfor %}
+            <!-- <div class="col-sm-4 col-xs-6 gallery__item">
               <a href="{% static 'img/gallery_2.jpg' %}" data-lightbox="gallery">
                 <img src="{% static 'img/gallery_2.jpg' %}" class="img-responsive" alt="...">
               </a>
@@ -88,7 +148,7 @@
               <a href="{% static 'img/gallery_10.jpg' %}" data-lightbox="gallery">
                 <img src="{% static 'img/gallery_10.jpg' %}" class="img-responsive" alt="...">
               </a>
-            </div>
+            </div> -->
           </div> <!-- .row -->
         </div> <!-- .container -->
       </section>
@@ -108,54 +168,15 @@
 
               <!-- Carousel -->
               <div class="dishes_carousel">
+                {% for item in feat_pics %}
                 <div class="dishes_carousel__item">
-                  <img src="{% static 'img/slogan_bg.jpg' %}" class="img-responsive" alt="...">
+                  <img src="{{ item.photo.url }}" class="img-responsive" alt="...">
                   <div class="dishes_carousel__item__caption">
-                    Lorem ipsum dolor sit amet consectetur.
+                    {{ item.recipe_name }}
                   </div>
                 </div>
-                <div class="dishes_carousel__item">
-                  <img src="{% static 'img/slider_bg1.jpg' %}" class="img-responsive" alt="...">
-                  <div class="dishes_carousel__item__caption">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </div>
-                </div>
-                <div class="dishes_carousel__item">
-                  <img src="{% static 'img/welcome-parallax_bg.jpg' %}" class="img-responsive" alt="...">
-                  <div class="dishes_carousel__item__caption">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </div>
-                </div>
-                <div class="dishes_carousel__item">
-                  <img src="{% static 'img/photo_1.jpg' %}" class="img-responsive" alt="...">
-                  <div class="dishes_carousel__item__caption">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </div>
-                </div>
-                <div class="dishes_carousel__item">
-                  <img src="{% static 'img/photo_bg.jpg' %}" class="img-responsive" alt="...">
-                  <div class="dishes_carousel__item__caption">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </div>
-                </div>
-                <div class="dishes_carousel__item">
-                  <img src="{% static 'img/menu_bg.jpg' %}" class="img-responsive" alt="...">
-                  <div class="dishes_carousel__item__caption">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </div>
-                </div>
-                <div class="dishes_carousel__item">
-                  <img src="{% static 'img/photo_3.jpg' %}" class="img-responsive" alt="...">
-                  <div class="dishes_carousel__item__caption">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </div>
-                </div>
-                <div class="dishes_carousel__item">
-                  <img src="{% static 'img/photo_2.jpg' %}" class="img-responsive" alt="...">
-                  <div class="dishes_carousel__item__caption">
-                    Lorem ipsum dolor sit amet consectetur.
-                  </div>
-                </div>
+                {% endfor %}
+
               </div> <!-- .dishes_carousel -->
 
             </div>
@@ -201,4 +222,34 @@
         </div> <!-- .container -->
       </section>
 
-{% endblock %}
+      <!-- section map -->
+      <div class="section_map">
+        <div class="section_row">
+          <div id="map"></div>
+        </div> <!-- / .section_row -->
+      </div> <!-- / .section_map -->
+
+      {% include "artisan_app/footer.html" %}
+
+    <!-- JS
+    ================================================== -->
+
+    <!-- JS Global -->
+    <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- JS Plugins -->
+    <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+
+    <!-- JS Custom -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/google_maps.js' %}"></script>
+
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTGnDWmYKPhKslCvPfkrcZDpgT_QMHT0s&callback=initMap" async defer></script>
+
+  </body>
+</html>
