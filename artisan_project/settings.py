@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'artisan_app',
     'ckeditor',
+    'taggit',
 ]
 
 MIDDLEWARE = [

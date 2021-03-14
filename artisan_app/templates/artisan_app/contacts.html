@@ -1,6 +1,48 @@
 {% extends 'artisan_app/base.html' %}
 {% load static %}
 {% block content %}
+
+    <!--  NAVBAR
+    ================================================== -->
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">The Artisan Bakery</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- General links english-->
+            <!-- <li><a href="{% url 'home' %}">Home</a><li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'menu' %}">Menu</a></li>
+            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+            <li><a href="{% url 'events' %}">Events</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li class="active"><a href="{% url 'contacts' %}">Contact</a></li> -->
+
+            <!-- General links -->
+            <li><a href="{% url 'home' %}">Acasa</a></li>
+            <li><a href="{% url 'about' %}">Despre</a></li>
+            <li><a href="{% url 'menu' %}">Meniu</a></li>
+            <li><a href="{% url 'gallery' %}">Galerie foto</a></li>
+            <li><a href="{% url 'events' %}">Evenimente</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li class="active"><a href="{% url 'contacts' %}">Contact</a></li>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
     <!-- CONTENT
     ================================================== -->
 
@@ -12,13 +54,24 @@
           <div class="col-sm-12">
 
 						<!-- Heading -->
-						<h1 class="section__heading section_header__heading text-center">
-							Contacts
+              <!-- english -->
+						<!-- <h1 class="section__heading section_header__heading text-center">
+							Contact
+						</h1> -->
+              <!-- romanian -->
+            <h1 class="section__heading section_header__heading text-center">
+							Contact
 						</h1>
 
 						<!-- Breadcrumbs -->
 						<ol class="breadcrumb">
-							<li><a href="{% url 'home' %}">Home</a></li>
+              <!-- english -->
+							<!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+              <!-- romanian -->
+              <li><a href="{% url 'home' %}">Acasa</a></li>
+              <!-- english -->
+              <!-- <li class="active">Contact</li> -->
+              <!-- romanian -->
 							<li class="active">Contact</li>
 						</ol>
 
@@ -46,7 +99,7 @@
 
               <!-- Title -->
               <h3 class="item__title">
-                Mail
+                E-Mail
               </h3>
               <i class="ion-ios-email-outline"></i>
 
@@ -65,9 +118,14 @@
 
             <div class="section_contacts__item">
 
-              <!-- Title -->
-              <h3 class="item__title">
+              <!-- Title english-->
+
+              <!-- <h3 class="item__title">
                 Phone
+              </h3> -->
+              <!-- Title romanian-->
+              <h3 class="item__title">
+                Telefon
               </h3>
               <i class="ion-ios-telephone-outline"></i>
 

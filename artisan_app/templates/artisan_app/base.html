@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{% static 'favicon/favicon_Groggery.ico' %}">
+    <link rel="shortcut icon" href="{% static 'favicon/logo.ico' %}">
     <link rel="stylesheet" href="{% static 'plugins/odometer/odometer-theme-minimal.css' %}" rel="stylesheet">
 
-    <title>The Artisan Bakery | Cake & Coffee Shop</title>
+    <title>The Artisan Bakery | Cake & Coffee Shop </title>
 
     <!-- CSS Plugins -->
     <link href="{% static 'plugins/lightbox/dist/css/lightbox.css' %}" rel="stylesheet">
@@ -33,88 +33,13 @@
       <div id="loader"></div>
     </div>
 
-    <!--  NAVBAR
-    ================================================== -->
 
-    <!-- navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
-            <span class="sr-only">Menu</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'home' %}">The Artisan Bakery</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar__collapse">
-          <ul class="nav navbar-nav navbar-right">
-
-            <!-- General links -->
-            <li class="dropdown active">
-              <a href="{% url 'home' %}" class="dropdown-toggle" data-toggle="#" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
-              <!-- <ul class="dropdown-menu"> -->
-                <!-- <li><a href="index_default.html">Home Image</a></li> -->
-                <!-- <li class="active"><a href="index_imageParallax.html">Home Parallax</a></li> -->
-                <!-- <li><a href="index_slider.html">Home Slider</a></li>
-                <li><a href="index_video.html">Home Video</a></li> -->
-              <!-- </ul> -->
-            </li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <i class="icon ion-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'menu' %}">Menu</a></li>
-              </ul>
-            </li>
-            <li><a href="{% url 'gallery' %}">Gallery</a></li>
-            <li><a href="{% url 'events' %}">Events</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <i class="icon ion-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'blog' %}">Blog Page</a></li>
-                <li><a href="{% url 'blog_post' %}">Blog Post Page</a></li>
-              </ul>
-            </li>
-            <!-- <li><a href="reservation.html">Reservation</a></li> -->
-            <li><a href="{% url 'contacts' %}">Contacts</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container -->
-    </nav>
     {% block content %}
 
     {% endblock %}
-    <!-- section map-heading -->
-    <section class="section_map-heading" id="section_contacts">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-              <h2 class="map__title">Find us on the map</h2>
-              <p class="map__address">500461 Str. Pelicanului 13, Brasov, RO<i></i></p>
-          </div>
-        </div> <!-- .row -->
-      </div> <!-- .container -->
-    </section>
 
-    <!-- section map -->
-<!--
-    <div class="section_map">
-      <div id="map" class="" style="border: 1px solid black; height: 40vh; width: 100%"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2788.2525272281573!2d25.555947815871047!3d45.66583057910369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b766c35ea5f%3A0xd19fd0955f55fbff!2sArtisan%20Bakery!5e0!3m2!1sro!2sro!4v1614153413599!5m2!1sro!2sro" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-    </div> -->
-
-    <div class="section_map">
-      <div class="section_row">
-        <div id="iframe-container" ><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2788.2525272281573!2d25.555947815871047!3d45.66583057910369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b766c35ea5f%3A0xd19fd0955f55fbff!2sArtisan%20Bakery!5e0!3m2!1sro!2sro!4v1614153413599!5m2!1sro!2sro" style="height: 40vh; width:100%" allowfullscreen="" loading="lazy"></iframe>
-
-        <!-- <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="map" src="https://maps.google.com/maps?q=pelicanului%2013&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div> -->
-      </div> <!-- / .section_row -->
-    </div> <!-- / .section_map -->
+    {% include "artisan_app/newsletter.html" %}
+    {% include "artisan_app/map.html" %}
     {% include "artisan_app/footer.html" %}
 
     <!-- JS

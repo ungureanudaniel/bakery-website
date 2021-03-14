@@ -1,6 +1,78 @@
-{% extends 'artisan_app/base.html' %}
-{% load static %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon_Groggery.ico' %}">
+    <link rel="stylesheet" href="{% static 'plugins/odometer/odometer-theme-minimal.css' %}" rel="stylesheet">
+
+    <title>The Artisan Bakery | Cake & Coffee Shop</title>
+
+    <!-- CSS Plugins -->
+    <link href="{% static 'plugins/lightbox/dist/css/lightbox.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/ionicons/css/ionicons.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- CSS Global -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+  </head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="70">
+
+    <!-- TO THE TOP BUTTON
+    ================================================== -->
+    <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+      <i class="ion-android-arrow-up"></i>
+    </a>
+
+    <!-- PRELOADER
+    ================================================== -->
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+    </div>
+
+    <!--  NAVBAR
+    ================================================== -->
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">The Artisan Bakery</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- General links english-->
+            <!-- <li><a href="{% url 'home' %}">Home</a><li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'menu' %}">Menu</a></li>
+            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+            <li><a href="{% url 'events' %}">Events</a></li>
+            <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
+            <!-- <li><a href="{% url 'contacts' %}">Contacts</a></li> --> -->
+
+            <!-- General links romanian-->
+            <li><a href="{% url 'home' %}">Acasa</a></li>
+            <li><a href="{% url 'about' %}">Despre</a></li>
+            <li><a href="{% url 'menu' %}">Meniu</a></li>
+            <li><a href="{% url 'gallery' %}">Fotografii</a></li>
+            <li><a href="{% url 'events' %}">Evenimente</a></li>
+            <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'contacts' %}">Contact</a></li>
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
       <!-- HEADER
       ================================================== -->
       <section class="section section_header section_header__blog">
@@ -32,7 +104,7 @@
             <div class="col-sm-8">
               <div class="blog__item">
                 <div class="blog-item__img">
-                  <img src="assets/img/gallery_4.jpg" class="img-responsive" alt="...">
+                  <img src="{% static '/img/gallery_4.jpg' %}" class="img-responsive" alt="...">
                 </div>
                 <div class="blog-item__content">
                   <p class="blog-item__category">
@@ -316,4 +388,37 @@
           </div> <!-- .row -->
         </div> <!-- .container -->
       </section>
-{% endblock %}
+<!-- section map -->
+      <div class="section_map">
+        <div class="section_row">
+          <div id="iframe-container" ><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2788.2525272281573!2d25.555947815871047!3d45.66583057910369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b766c35ea5f%3A0xd19fd0955f55fbff!2sArtisan%20Bakery!5e0!3m2!1sro!2sro!4v1614153413599!5m2!1sro!2sro" style="height: 40vh; width:100%" allowfullscreen="" loading="lazy"></iframe>
+
+            <!-- <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="map" src="https://maps.google.com
+            maps?q=pelicanului%2013&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div> -->
+        </div> <!-- / .section_row -->
+      </div> <!-- / .section_map -->
+
+      {% include "artisan_app/footer.html" %}
+
+<!-- JS
+================================================= -->
+
+    <!-- JS Global -->
+    <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- JS Plugins -->
+    <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+
+    <!-- JS Custom -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/google_maps.js' %}"></script>
+
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTGnDWmYKPhKslCvPfkrcZDpgT_QMHT0s&callback=initMap" async defer></script>
+
+  </body>
+</html>

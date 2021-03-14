@@ -1,6 +1,50 @@
 {% extends 'artisan_app/base.html' %}
 {% load static %}
 {% block content %}
+
+    <!--  NAVBAR
+    ================================================== -->
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">The Artisan Bakery</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- General links english-->
+            <!-- <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="active"><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'menu' %}">Menu</a></li>
+            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+            <li><a href="{% url 'events' %}">Events</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'contacts' %}">Contact</a></li> -->
+
+            <!-- General links romanian-->
+            <li><a href="{% url 'home' %}">Acasa</a></li>
+            <li class="active"><a href="{% url 'about' %}">Despre</a></li>
+            <li><a href="{% url 'menu' %}">Meniu</a></li>
+            <li><a href="{% url 'gallery' %}">Galerie foto</a></li>
+            <li><a href="{% url 'events' %}">Evenimente</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'contacts' %}">Contact</a></li>
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
       <!-- HEADER
       ================================================== -->
 
@@ -10,14 +54,23 @@
             <div class="col-sm-12">
 
               <!-- Heading -->
-              <h1 class="section__heading section_header__heading text-center">
+                <!-- english -->
+              <!-- <h1 class="section__heading section_header__heading text-center">
                 About us
+              </h1> -->
+                <!-- romanian -->
+              <h1 class="section__heading section_header__heading text-center">
+                Despre noi
               </h1>
 
               <!-- Breadcrumbs -->
               <ol class="breadcrumb">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li class="active">About Us</li>
+                <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+                <li><a href="{% url 'home' %}">Acasa</a></li>
+
+                <!-- <li class="active">About Us</li> -->
+                <li class="active">Despre noi</li>
+
               </ol>
 
             </div>
@@ -30,6 +83,7 @@
       <section class="section_story">
         <div class="container">
           <div class="row">
+            {% for fact in facts %}
             <div class="col-sm-4">
 
               <div class="section_story__item">
@@ -38,29 +92,30 @@
                 </div>
                 <i class="ion-ios-star"></i>
                 <h3 class="story_item__title">
-                  Clients
+                  {{ fact.category_ro }}
                 </h3>
                 <!-- <p class="story_item__desc">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur nemo, accusamus! Fugiat rerum impedit ducimus error, fuga, earum ea reprehenderit accusantium odio modi quisquam, ab rem iusto quod voluptatum provident.
                 </p> -->
-                <div id="odometer" class="odometer">123</div>
+                <div id="odometer" class="odometer">{{ fact.figures }}</div>
               </div>
 
             </div>
-            <div class="col-sm-4">
+            {% endfor %}
+            <!-- <div class="col-sm-4">
 
               <div class="section_story__item">
                 <div class="story_item__year">
                   <!-- 2005 -->
-                </div>
+                <!-- </div>
                 <i class="ion-ios-star"></i>
                 <h3 class="story_item__title">
                   Cake sold
-                </h3>
+                </h3> -->
                 <!-- <p class="story_item__desc">
                   Quisquam similique quasi beatae doloremque ut voluptatum incidunt unde adipisci, perferendis nesciunt aut dolores aspernatur corrupti quaerat ducimus voluptate magni minima exercitationem non quos.
                 </p> -->
-                <p id="odometer" class="odometer">1</p>
+                <!-- <p id="odometer" class="odometer">1</p>
               </div>
 
             </div>
@@ -69,18 +124,18 @@
               <div class="section_story__item">
                 <div class="story_item__year">
                   <!-- 2016 -->
-                </div>
+                <!-- </div>
                 <i class="ion-ios-star"></i>
                 <h3 class="story_item__title">
                   Kg of flour used
-                </h3>
+                </h3> -->
                 <!-- <p class="story_item__desc">
                    Minima eaque praesentium nam perferendis quod ad, voluptate omnis eos reiciendis qui veritatis cupiditate id. Sapiente atque, maiores quia accusamus doloribus officia dignissimos, temporibus recusanda.
                 </p> -->
-                <p id="odometer" class="odometer">1</p>
+                <!-- <p id="odometer" class="odometer">1</p>
               </div>
 
-            </div>
+            </div> -->
           </div> <!-- / .row -->
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -149,44 +204,9 @@
               </div> <!-- .team_item -->
             </div>
             {% endfor %}
-            <!-- <div class="col-sm-4">
-              <div class="team__item">
-                <div class="team__item_photo">
-                  <img class="img-responsive" src="{% static 'img/team_photo_2.jpg' %}" alt="...">
-                </div>
-                <div class="team__item_name">
-                  <h3>Jane Doe</h3>
-                </div>
-                <div class="team__item_overlay">
-                  <p class="team__item_profession">Chef</p>
-                  <ul class="team__item_social">
-                    <li class="social_icon"><a href="#"><i class="icon ion-social-facebook-outline"></i></a></li>
-                    <li class="social_icon"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
-                    <li class="social_icon"><a href="#"><i class="icon ion-social-instagram-outline"></i></a></li>
-                  </ul>
-                </div>
-              </div> <!-- .team_item -->
-            <!-- </div> -->
-            <!-- <div class="col-sm-4">
-              <div class="team__item">
-                <div class="team__item_photo">
-                  <img class="img-responsive" src="{% static 'img/team_photo_3.jpg' %}" alt="...">
-                </div>
-                <div class="team__item_name">
-                  <h3>John Doe</h3>
-                </div>
-                <div class="team__item_overlay">
-                  <p class="team__item_profession">Barman</p>
-                  <ul class="team__item_social">
-                    <li class="social_icon"><a href="#"><i class="icon ion-social-facebook-outline"></i></a></li>
-                    <li class="social_icon"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
-                    <li class="social_icon"><a href="#"><i class="icon ion-social-instagram-outline"></i></a></li>
-                  </ul>
-                </div>
-              </div> <!-- .team_item -->
             </div>
           </div> <!-- .row -->
-        </div> <!-- .container -->
+        <!-- </div> <!-- .container --> -->
       </section>
 
       <!-- section join -->
@@ -208,9 +228,9 @@
         </div> <!-- .container -->
       </section>
 {% endblock %}
-<script>
+
+<!-- <script>
     setTimeout(function(){
       odometer.innerHTML = 14000;
     }, 1000);
-</script>
-<!-- {% include "templates/reviews.html" %} -->
+</script> -->

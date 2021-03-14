@@ -1,6 +1,49 @@
 {% extends 'artisan_app/base.html' %}
 {% load static %}
 {% block content %}
+<!--  NAVBAR
+================================================== -->
+
+<!-- navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+        <span class="sr-only">Menu</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index_default.html">{{ slogans.brand }}</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar__collapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <!-- General links english-->
+        <!-- <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'menu' %}">Menu</a></li>
+        <li ><a href="{% url 'gallery' %}">Gallery</a></li>
+        <li><a href="{% url 'events' %}">Events</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+        <li><a href="{% url 'contacts' %}">Contact</a></li> -->
+
+        <!-- General links romanian -->
+        <li><a href="{% url 'home' %}">Acasa</a></li>
+        <li><a href="{% url 'about' %}">Despre</a></li>
+        <li><a href="{% url 'menu' %}">Meniu</a></li>
+        <li><a href="{% url 'gallery' %}">Fotografii</a></li>
+        <li><a href="{% url 'events' %}">Evenimente</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+        <li><a href="{% url 'contacts' %}">Contact</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+</nav>
       <!-- CONTENT
       ================================================== -->
 
@@ -92,41 +135,4 @@
         </div> <!-- .section_row -->
       </section>
 
-      <!-- section newsletter -->
-      <section class="section_newsletter">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4">
-              <p class="section_newsletter_title-sm">Subscribe for our</p>
-              <h2 class="section_newsletter_title-lg">Newsletter</h2>
-            </div>
-            <div class="col-sm-8">
-              <!-- Newsletter form -->
-              <div id="mc_embed_signup">
-                <form class="newsletter__form validate" action="//themeforest.us16.list-manage.com/subscribe/post-json?u=3c9679e26b601e1a87122b12f&id=e4b9351526&c=?" method="get" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
-                  <div id="mc_embed_signup_scroll" class="row">
-                    <div class="mc-field-group form-group col-sm-7 col-md-9">
-                      <label for="mce-EMAIL" class="sr-only">E-mail address</label>
-                      <input type="email" value="" name="EMAIL" class="required email form-control newsletter_input" id="mce-EMAIL" placeholder="Email address">
-                    </div>
-                    <div id="mce-responses" class="clear">
-                      <div class="response"></div>
-                      <div class="response" id="mce-success-response"></div>
-                    </div>
-                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                    <div aria-hidden="true" id="mce-hidden-input">
-                      <input type="text" name="b_507744bbfd1cc2879036c7780_4523d25e1b" tabindex="-1" value="">
-                    </div>
-                    <div class="clear col-sm-5 col-md-3">
-                      <button type="submit" class="btn btn-default" id="mc-embedded-subscribe">
-                        Subscribe
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div> <!-- #mc_embed_signup -->
-            </div>
-          </div> <!-- .row -->
-        </div> <!-- .container -->
-      </section>
 {% endblock %}

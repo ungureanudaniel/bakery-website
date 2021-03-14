@@ -465,7 +465,7 @@ var menu = (function() {
 
     // Set ititial filtering
     $menu.imagesLoaded().progress( function() {
-        $menu.isotope({ filter: ".menu_breakfast, .menu-text_breakfast" });
+        $menu.isotope({ filter: ".menu_torturi, .menu-text_breakfast" });
     });
 
     // Filter items on click

@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,9 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{% static 'favicon/favicon_Groggery.ico">
+    <link rel="shortcut icon" href="{% static 'favicon/logo.ico' %}">
 
-    <title>Gallery | {{ slogans.brand }} </title>
+    <title>{{ slogans.brand }} | {{ slogans.motto }} </title>
 
     <!-- CSS Plugins -->
     <link href="{% static 'plugins/lightbox/dist/css/lightbox.css' %}" rel="stylesheet">
@@ -35,23 +34,31 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index_default.html">{{ slogans.brand }}</a>
+          <a class="navbar-brand" href="{% url 'home' %}">{{ slogans.brand }}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar__collapse">
           <ul class="nav navbar-nav navbar-right">
 
-            <!-- General links -->
-            <li class="dropdown">
-              <a href="{% url 'home' %}" role="button">Home <i class="icon ion-chevron-down"></i></a>
-            </li>
+            <!-- General links english-->
+            <!-- <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'menu' %}">Image Menu</a></li>
+            <li><a href="{% url 'menu' %}">Menu</a></li>
             <li class="active"><a href="{% url 'gallery' %}">Gallery</a></li>
             <li><a href="{% url 'events' %}">Events</a></li>
-            <li><a href="{% url 'blog' %}">Blog Page</a></li>
-            <li><a href="{% url 'contacts' %}">Contacts</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'contacts' %}">Contact</a></li> -->
+
+            <!-- General links romanian -->
+            <li><a href="{% url 'home' %}">Acasa</a></li>
+            <li><a href="{% url 'about' %}">Despre</a></li>
+            <li><a href="{% url 'menu' %}">Meniu</a></li>
+            <li class="active"><a href="{% url 'gallery' %}">Galerie foto</a></li>
+            <li><a href="{% url 'events' %}">Evenimente</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'contacts' %}">Contact</a></li>
+
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
@@ -68,14 +75,26 @@
             <div class="col-sm-12">
 
               <!-- Heading -->
-              <h1 class="section__heading section_header__heading text-center">
+                <!-- english -->
+              <!-- <h1 class="section__heading section_header__heading text-center">
                 Gallery
+              </h1> -->
+                <!-- romanian -->
+              <h1 class="section__heading section_header__heading text-center">
+                Galerie foto
               </h1>
 
               <!-- Breadcrumbs -->
               <ol class="breadcrumb">
-                <li><a href="index_default.html">Home</a></li>
-                <li class="active">Gallery</li>
+                  <!-- english -->
+                <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+                  <!-- romanian -->
+                <li><a href="{% url 'home' %}">Acasa</a></li>
+                  <!-- english -->
+                <!-- <li class="active">Gallery</li> -->
+                  <!-- romanian -->
+                <li class="active">Galerie foto</li>
+
               </ol>
 
             </div>
@@ -97,58 +116,12 @@
           <div class="row gallery__grid">
             {% for item in int_photos %}
             <div class="col-sm-4 col-xs-6 gallery__item">
-
               <a href="{{ item.photo.url }}" data-lightbox="gallery">
                 <img src="{{ item.photo.url }}" class="img-responsive" alt="...">
               </a>
-
             </div>
             {% endfor %}
-            <!-- <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_2.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_2.jpg' %}" class="img-responsive" alt="...">
-              </a>
-            </div>
-            <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_3.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_3.jpg' %}" class="img-responsive" alt="...">
-              </a>
-            </div>
-            <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_4.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_4.jpg' %}" class="img-responsive" alt="...">
-              </a>
-            </div>
-            <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_5.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_5.jpg' %}" class="img-responsive" alt="...">
-              </a>
-            </div>
-            <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_6.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_6.jpg' %}" class="img-responsive" alt="...">
-              </a>
-            </div>
-            <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_7.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_7.jpg' %}" class="img-responsive" alt="...">
-              </a>
-            </div>
-            <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_8.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_8.jpg' %}" class="img-responsive" alt="...">
-              </a>
-            </div>
-            <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_9.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_9.jpg' %}" class="img-responsive" alt="...">
-              </a>
-            </div>
-            <div class="col-sm-4 col-xs-6 gallery__item">
-              <a href="{% static 'img/gallery_10.jpg' %}" data-lightbox="gallery">
-                <img src="{% static 'img/gallery_10.jpg' %}" class="img-responsive" alt="...">
-              </a>
-            </div> -->
+
           </div> <!-- .row -->
         </div> <!-- .container -->
       </section>
@@ -158,7 +131,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
-              <h2 class="section_photo__title">&#8722; Chief pride &#8722;</h2>
+              <h2 class="section_photo__title">&#8722; Mandria noastra &#8722;</h2>
               <hr class="section_title_line">
               <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam iure, quos maxime amet nostrum reiciendis, provident quisquam nulla!</p>
             </div>
@@ -172,7 +145,7 @@
                 <div class="dishes_carousel__item">
                   <img src="{{ item.photo.url }}" class="img-responsive" alt="...">
                   <div class="dishes_carousel__item__caption">
-                    {{ item.recipe_name }}
+                    Lorem ipsum dolor sit amet consectetur.
                   </div>
                 </div>
                 {% endfor %}
@@ -184,52 +157,11 @@
         </div> <!-- .container -->
       </section> <!-- .section_photo -->
 
-      <!-- section newsletter -->
-      <section class="section_newsletter">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4">
-              <p class="section_newsletter_title-sm">Subscribe for our</p>
-              <h2 class="section_newsletter_title-lg">Newsletter</h2>
-            </div>
-            <div class="col-sm-8">
-              <!-- Newsletter form -->
-              <div id="mc_embed_signup">
-                <form class="newsletter__form validate" action="//themeforest.us16.list-manage.com/subscribe/post-json?u=3c9679e26b601e1a87122b12f&id=e4b9351526&c=?" method="get" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
-                  <div id="mc_embed_signup_scroll" class="row">
-                    <div class="mc-field-group form-group col-sm-7 col-md-9">
-                      <label for="mce-EMAIL" class="sr-only">E-mail address</label>
-                      <input type="email" value="" name="EMAIL" class="required email form-control newsletter_input" id="mce-EMAIL" placeholder="Email address">
-                    </div>
-                    <div id="mce-responses" class="clear">
-                      <div class="response"></div>
-                      <div class="response" id="mce-success-response"></div>
-                    </div>
-                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                    <div aria-hidden="true" id="mce-hidden-input">
-                      <input type="text" name="b_507744bbfd1cc2879036c7780_4523d25e1b" tabindex="-1" value="">
-                    </div>
-                    <div class="clear col-sm-5 col-md-3">
-                      <button type="submit" class="btn btn-default" id="mc-embedded-subscribe">
-                        Subscribe
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div> <!-- #mc_embed_signup -->
-            </div>
-          </div> <!-- .row -->
-        </div> <!-- .container -->
-      </section>
+    {% include 'artisan_app/newsletter.html' %}
 
-      <!-- section map -->
-      <div class="section_map">
-        <div class="section_row">
-          <div id="map"></div>
-        </div> <!-- / .section_row -->
-      </div> <!-- / .section_map -->
+    {% include 'artisan_app/map.html' %}
+    {% include 'artisan_app/footer.html' %}
 
-      {% include "artisan_app/footer.html" %}
 
     <!-- JS
     ================================================== -->

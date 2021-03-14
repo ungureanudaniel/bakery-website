@@ -7964,17 +7964,18 @@ Last change:	04/21/2017
   text-align: left;
   margin-top: 0;
   position: relative;
-  font-size: 20px;
-  padding: 10px;
+  font-size: 15px;
+  padding: 30px;
   background: rgba(0, 0, 0, 0.6);
-  -webkit-transform: translateY(45px);
-  transform: translateY(45px);
+  -webkit-transform: translateY(55px);
+  transform: translateY(55px);
   -webkit-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out;
 }
+
 @media (max-width: 991px) {
   .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay > h3 {
-    font-size: 15px;
+    font-size: 20px;
     padding: 8px;
     -webkit-transform: translateY(35px);
             transform: translateY(35px);
@@ -7987,15 +7988,17 @@ Last change:	04/21/2017
             transform: translateY(35px);
   }
 }
+
 .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay > h3 > .price {
   color: #F1AE2B;
   float: right;
-  font-size: 30px;
+  font-size: 20px;
   margin-top: -5px;
+  padding-top: 10px;
 }
 @media (max-width: 991px) {
   .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay > h3 > .price {
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay .overlay_info {
@@ -8009,7 +8012,7 @@ Last change:	04/21/2017
   -webkit-transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
           transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
   padding: 22px;
-  font-size: 17px;
+  font-size: 10px;
 }
 @media (max-width: 1199px) {
   .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay .overlay_info {
@@ -8038,6 +8041,7 @@ Last change:	04/21/2017
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
+
 @media (max-width: 991px) {
   .section_menu .menu__grid .menu__item .menu__item_hover:hover .menu__item_overlay > h3 {
     -webkit-transform: translateY(0);

@@ -1,33 +1,69 @@
 from django.shortcuts import render
-from .models import Team, Gallery, RecipeCategory, Menu, Slogan, Comments
+from .models import Team, Gallery, RecipeCategory, Menu, Slogan, Comment, Story, Event, Fact
+from .utils import fb_followers_count
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
+import datetime
 
 #------------------------HOME VIEW-----------------------------------------HOME
 def home_view(request):
-    template = 'artisan_app/index_imageParallax.html'
+    template = 'artisan_app/home.html'
     team = Team.objects.all()
 
     #--------------------fetch recipes per category-----------------------------
     recipe_categories = RecipeCategory.objects.all()
     #---------------------fetch recipes-----------------------------------------
     menu = Menu.objects.all()
+    # tarte_dulci = Menu.objects.filter(type='menu_tarte')
+    # torturi = Menu.objects.filter(type='menu_torturi')
+    # sarate = Menu.objects.filter(category='sarate')
+    # fursecuri = Menu.objects.filter(category='fursecuri')
+    # cheesecake = Menu.objects.filter(category='cheesecake')
+    # paine = Menu.objects.filter(category='paine-cu-maia')
+    # prajituri_diverse = Menu.objects.filter(category='prajituri-diverse')
+    # cafea = Menu.objects.filter(category='cafea')
+
+
     #----------------------brand name and slogans-------------------------------
     slogans = Slogan.objects.latest("timestamp")
     #---------------------get gallery pictures----------------------------------
     pictures = Gallery.objects.all()[:10]
     feat_pics = Menu.objects.filter(featured=True)
-    #---------------------get website comments----------------------------------
-    comm = Comments.objects.all()
+    #---------------------get our story data----------------------------------
+    story = Story.objects.last()
+    #---------------------get events data--------------------------------------
+    #-------events this week------------------
+    startdate1 = datetime.date.today()
+    enddate1 = startdate1 + datetime.timedelta(days=6)
+    #-------events this month------------------
+    startdate2 = datetime.date.today()
+    enddate2 = startdate2 + datetime.timedelta(days=30)
+
+    this_week_events = Event.objects.filter(start_date__range=[startdate1, enddate1]).order_by('start_date')
+    this_month_events = Event.objects.filter(start_date__range=[startdate2, enddate2]).order_by('start_date')
+
+    #-----------------------facebook reviews -----------------------------------
+    comm = Comment.objects.all()
 
     context = {
         "team":team,
         "recipe_categories": recipe_categories,
         "menu": menu,
+        # "tarte_dulci": tarte_dulci,
+        # "torturi": torturi,
+        # "sarate": sarate,
+        # "cheesecake": cheesecake,
+        # "paine": paine,
+        # "prajituri_diverse": prajituri_diverse,
+        # "cafea": cafea,
+        # "fursecuri": fursecuri,
         "pictures": pictures,
         "slogans": slogans,
         "comm": comm,
         "feat_pics": feat_pics,
+        "story": story,
+        "this_week_events": this_week_events,
+        "this_month_events": this_month_events,
     }
     #-----------------------CONTACT LOGIC---------------------------------------
     if request.method == "POST":
@@ -60,8 +96,11 @@ def home_view(request):
 def about_view(request):
     template = 'artisan_app/about.html'
     team = Team.objects.all()
+    facts = Fact.objects.all()
+
     context = {
-        "team":team
+        "team":team,
+        "facts": facts,
     }
 
     return render(request, template, context)
@@ -111,8 +150,17 @@ def contacts_view(request):
 #------------------------MENU VIEW------------------------------------------MENU
 def menu_view(request):
     template = 'artisan_app/menu_image.html'
+    #--------------------fetch recipes per category-----------------------------
+    recipe_categories = RecipeCategory.objects.all()
+    #---------------------fetch recipes-----------------------------------------
+    menu = Menu.objects.all()
 
-    return render(request, template, {})
+    context = {
+        "recipe_categories": recipe_categories,
+        "menu": menu,
+    }
+
+    return render(request, template, context)
 
 #------------------------GALLERY VIEW------------------------------------GALLERY
 def gallery_view(request):
