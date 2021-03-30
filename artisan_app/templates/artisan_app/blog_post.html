@@ -1,35 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{% static 'favicon/favicon_Groggery.ico' %}">
-    <link rel="stylesheet" href="{% static 'plugins/odometer/odometer-theme-minimal.css' %}" rel="stylesheet">
-
-    <title>The Artisan Bakery | Cake & Coffee Shop</title>
-
-    <!-- CSS Plugins -->
-    <link href="{% static 'plugins/lightbox/dist/css/lightbox.css' %}" rel="stylesheet">
-    <link href="{% static 'plugins/ionicons/css/ionicons.min.css' %}" rel="stylesheet" type="text/css">
-
-    <!-- CSS Global -->
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
-
-  </head>
-  <body data-spy="scroll" data-target=".navbar" data-offset="70">
-
-    <!-- TO THE TOP BUTTON
-    ================================================== -->
-    <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
-      <i class="ion-android-arrow-up"></i>
-    </a>
-
-    <!-- PRELOADER
-    ================================================== -->
-    <div id="loader-wrapper">
-      <div id="loader"></div>
-    </div>
+{% extends 'artisan_app/base.html' %}
+{% load static %}
+{% block content %}
 
     <!--  NAVBAR
     ================================================== -->
@@ -69,7 +40,11 @@
             <li><a href="{% url 'events' %}">Evenimente</a></li>
             <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
             <li><a href="{% url 'contacts' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+            <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
+            <li  class="active"><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
 
+            {% endif %}
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
     </nav>
@@ -81,14 +56,22 @@
             <div class="col-sm-12">
 
               <!-- Heading -->
-              <h1 class="section__heading section_header__heading text-center">
+              <!-- <h1 class="section__heading section_header__heading text-center">
                 Blog Post
+              </h1> -->
+              <h1 class="section__heading section_header__heading text-center">
+                Postari
               </h1>
 
               <!-- Breadcrumbs -->
               <ol class="breadcrumb">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li class="active">Blog Post</li>
+                <!-- <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li class="active">Blog Post</li> -->
+
+                <li><a href="{% url 'home' %}">Acasa</a></li>
+
+                <li class="active">Postari</li>
               </ol>
 
             </div>
@@ -104,43 +87,36 @@
             <div class="col-sm-8">
               <div class="blog__item">
                 <div class="blog-item__img">
-                  <img src="{% static '/img/gallery_4.jpg' %}" class="img-responsive" alt="...">
+                  <img src="{{ the_post.image.url }}" class="img-responsive" alt="...">
                 </div>
                 <div class="blog-item__content">
                   <p class="blog-item__category">
-                    - Food -
+                    - {{ the_post.category|upper }} -
                   </p>
                   <div class="blog-item__title">
-                    <h3>Cafe as a house</h3>
+                    <h3>{{ the_post.title }}</h3>
                   </div>
                   <div class="blog-item__date">
-                    <p>December 24, 2017</p>
+                    <p>{{ the_post.created_date|date:"d N Y" }}</p>
                   </div>
+
                   <div class="blog-item__text">
-                    One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.
+                    {{ the_post.text|safe }}
                   </div> <!-- .blog-item__text -->
-                  <div class="blog-item__text">
-                    "What's happened to me?" he thought. It wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame.
-                  </div> <!-- .blog-item__text -->
-                  <h4 class="blog-item__header">Lorem ipsum dolor sit amet</h4>
-                  <div class="blog-item__text">
-                     It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather.
-                  </div> <!-- .blog-item__text -->
-                  <h4 class="blog-item__quote">The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary.</h4>
-                  <div class="blog-item__text">
-                     Drops of rain could be heard hitting the pane, which made him feel quite sad. "How about if I sleep a little bit longer and forget all this nonsense", he thought, but that was something he was unable to do because he was used to sleeping on his right, and in his present state couldn't get into that position. However hard he threw himself onto his right, he always rolled back to where he was. He must have tried it a hundred times, shut his eyes so that he wouldn't have to look at the floundering legs, and only stopped when he began to feel a mild, dull pain there that he had never felt before. "Oh, God", he thought, "what a strenuous career it is that I've chosen!
-                  </div> <!-- .blog-item__text -->
+
                   <div class="blog-item__tags">
                     <p>Tags:</p>
-                    <a href="#">#food</a>
-                    <a href="#">#groggery</a>
-                    <a href="#">#themeforest</a>
+                    {% for tag in blogpost.tags.all %}
+                    <a href="#">{{ item.name }}</a>
+                    <!-- <a href="#">#groggery</a>
+                    <a href="#">#themeforest</a> -->
+                    {% endfor %}
                   </div>
                   <div class="blog-item__footer">
                     <div class="footer__item">
                       <ul class="item-info__list">
-                        <li class="info-list__item"><i class="ion ion-android-person"></i> by John Doe</li>
-                        <li class="info-list__item"><i class="ion ion-android-chat" aria-hidden="true"></i> 5 Comments</li>
+                        <li class="info-list__item"><i class="ion ion-android-person"></i> by {{ post.author.first_name }} {{ post.author.last_name }}</li>
+                        <li class="info-list__item"><i class="ion ion-android-chat" aria-hidden="true"></i>{{ post.comment_count }} Comments</li>
                       </ul> <!-- .item-info__list -->
                     </div> <!-- .footer__item -->
                     <div class="footer__item">
@@ -157,20 +133,21 @@
               <div class="comments">
                 <h4 class="subheading">Comments</h4>
                 <ul class="comments__list">
+                  {% for comment in comments %}
                   <li class="comment">
                     <div class="comment__user">
-                      Robert Jones
+                      {{ comment.name }}
                     </div>
                     <div class="comment__date">
-                      April 8, 2017 at 1:15 pm
+                      {{ comment.timestamp }}
                     </div>
                     <div class="comment__message">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni dicta alias enim quasi sapiente saepe, repellat soluta commodi delectus doloribus, veniam odit hic ratione quae modi earum dolor dignissimos quas?
+                      {{ comment.text }}
                     </div>
                     <div class="comment__reply">
                       <a href="">Reply</a>
                     </div>
-                    <ul class="comments-list__children">
+                    <!-- <ul class="comments-list__children">
                       <li class="comment">
                         <div class="comment__user">
                           John Doe
@@ -184,73 +161,34 @@
                         <div class="comment__reply">
                           <a href="">Reply</a>
                         </div>
-                      </li>
-                    </ul> <!-- .comments-list__children -->
+                      </li> -->
+                    <!-- </ul> <!-- .comments-list__children --> -->
                   </li> <!-- .comment -->
-                  <li class="comment">
-                    <div class="comment__user">
-                      Maria Atkinson
-                    </div>
-                    <div class="comment__date">
-                      March 24, 2017 at 1:38 am
-                    </div>
-                    <div class="comment__message">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit eaque magni aliquam dolore cum aliquid ipsa, asperiores modi voluptates.
-                    </div>
-                    <div class="comment__reply">
-                      <a href="">Reply</a>
-                    </div>
-                  </li> <!-- .comment -->
-                  <li class="comment">
-                    <div class="comment__user">
-                      Brad pitt
-                    </div>
-                    <div class="comment__date">
-                      March 20, 2017 at 3:40 pm
-                    </div>
-                    <div class="comment__message">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti provident adipisci eos reiciendis. Ab dolore natus nam temporibus quidem esse soluta. Accusamus sapiente, officia architecto accusantium sunt amet harum quis!
-                    </div>
-                    <div class="comment__reply">
-                      <a href="">Reply</a>
-                    </div>
-                  </li> <!-- .comment -->
-                  <li class="comment">
-                    <div class="comment__user">
-                      Jessica Doe
-                    </div>
-                    <div class="comment__date">
-                      March 15, 2017 at 10:30 am
-                    </div>
-                    <div class="comment__message">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quas iste et dolor harum accusamus.
-                    </div>
-                    <div class="comment__reply">
-                      <a href="">Reply</a>
-                    </div>
-                  </li> <!-- .comment -->
+                  {% endfor %}
                 </ul> <!-- .comments__list -->
-                <h4 class="subheading">Leave a comment</h4>
-                <form class="comments__form">
 
+
+                <h4 class="subheading">Leave a comment</h4>
+                <form class="comments__form" method="POST" action=".">
+                  {% csrf_token %}
                   <div class="form-group">
                     <label for="name" class="sr-only">Name (Required)</label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Full Name">
+                    <input type="text" name="form-name" class="form-control" id="name" placeholder="Enter Your Full Name">
                   </div>
 
                   <div class="form-group">
                     <label for="email" class="sr-only">Email address (Required)</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your E-mail">
+                    <input type="email" name="form-email" class="form-control" id="email" placeholder="Enter Your E-mail">
                   </div>
 
                   <div class="form-group">
                     <label for="website" class="sr-only">Website</label>
-                    <input type="email" name="website" class="form-control" id="website" placeholder="Enter website">
+                    <input type="email" name="form-website" class="form-control" id="website" placeholder="Enter website">
                   </div>
 
                   <div class="form-group">
                     <label for="message" class="sr-only">Message (Required)</label>
-                    <textarea name="message" class="form-control" rows="6" id="message" placeholder="Enter Your Message"></textarea>
+                    <textarea name="form-message" class="form-control" rows="6" id="message" placeholder="Enter Your Message"></textarea>
                     <span class="help-block"></span>
                   </div>
 
@@ -260,6 +198,7 @@
                 </form>
               </div> <!-- .comments -->
             </div>
+
             <div class="col-sm-4">
               <div class="blog__sidebar">
                 <div class="sidebar__item">
@@ -282,17 +221,19 @@
                 <div class="sidebar__item">
                   <h4 class="subheading">Recent posts</h4>
                   <ul class="recent__posts">
+                    {% for item in posts %}
                     <li>
                       <a href="#" class="post__title">
-                        <h5 class="post__title">Lorem ipsum dolor sit amet.</h5>
+                        <h5 class="post__title">{{ item.title }}</h5>
                         <p class="post__desc">
-                          One morning, when Gregor Samsa woke from troubled dreams, he found...
+                          {{ item.text|safe|truncatechars:100 }}
                         </p>
-                        <p class="post__info"><i class="ion ion-android-calendar"></i> 15 March, 2017</p>
-                        <p class="post__info"><i class="ion ion-android-person"></i> by John Doe</p>
+                        <p class="post__info"><i class="ion ion-android-calendar"></i>{{ item.created_date|date:"d N Y" }}</p>
+                        <p class="post__info"><i class="ion ion-android-person"></i> by {{ item.author.first_name }} {{ item.author.last_name }}</p>
                       </a>
                     </li>
-                    <li>
+                    {% endfor %}
+                    <!-- <li>
                       <a href="#">
                         <h5 class="post__title">Lorem ipsum dolor sit amet.</h5>
                         <p class="post__desc">
@@ -321,20 +262,22 @@
                         <p class="post__info"><i class="ion ion-android-calendar"></i> 15 March, 2017</p>
                         <p class="post__info"><i class="ion ion-android-person"></i> by John Doe</p>
                       </a>
-                    </li>
+                    </li> -->
                   </ul>
                 </div> <!-- .sidebar__item -->
                 <div class="sidebar__item">
                   <h4 class="subheading">Tags</h4>
                   <ul class="tags">
-                    <li><a href="#">#food</a></li>
-                    <li><a href="#">#bar</a></li>
+                    {% for tag in blogpost.tags.all %}
+                    <li><a href="#">#{{ tag.name }}</a></li>
+                    <!-- <li><a href="#">#bar</a></li>
                     <li><a href="#">#services</a></li>
                     <li><a href="#">#cafe</a></li>
                     <li><a href="#">#groggery</a></li>
                     <li><a href="#">#events</a></li>
                     <li><a href="#">#news</a></li>
-                    <li><a href="#">#restaurant</a></li>
+                    <li><a href="#">#restaurant</a></li> -->
+                    {% endfor %}
                   </ul>
 
                   <h4 class="subheading">Follow us</h4>
@@ -352,51 +295,8 @@
       </section> <!-- / .section__blog-post -->
 
       <!-- section newsletter -->
-      <section class="section_newsletter">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4">
-              <p class="section_newsletter_title-sm">Subscribe for our</p>
-              <h2 class="section_newsletter_title-lg">Newsletter</h2>
-            </div>
-            <div class="col-sm-8">
-              <!-- Newsletter form -->
-              <div id="mc_embed_signup">
-                <form class="newsletter__form validate" action="//themeforest.us16.list-manage.com/subscribe/post-json?u=3c9679e26b601e1a87122b12f&id=e4b9351526&c=?" method="get" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
-                  <div id="mc_embed_signup_scroll" class="row">
-                    <div class="mc-field-group form-group col-sm-7 col-md-9">
-                      <label for="mce-EMAIL" class="sr-only">E-mail address</label>
-                      <input type="email" value="" name="EMAIL" class="required email form-control newsletter_input" id="mce-EMAIL" placeholder="Email address">
-                    </div>
-                    <div id="mce-responses" class="clear">
-                      <div class="response"></div>
-                      <div class="response" id="mce-success-response"></div>
-                    </div>
-                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                    <div aria-hidden="true" id="mce-hidden-input">
-                      <input type="text" name="b_507744bbfd1cc2879036c7780_4523d25e1b" tabindex="-1" value="">
-                    </div>
-                    <div class="clear col-sm-5 col-md-3">
-                      <button type="submit" class="btn btn-default" id="mc-embedded-subscribe">
-                        Subscribe
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div> <!-- #mc_embed_signup -->
-            </div>
-          </div> <!-- .row -->
-        </div> <!-- .container -->
-      </section>
-<!-- section map -->
-      <div class="section_map">
-        <div class="section_row">
-          <div id="iframe-container" ><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2788.2525272281573!2d25.555947815871047!3d45.66583057910369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b766c35ea5f%3A0xd19fd0955f55fbff!2sArtisan%20Bakery!5e0!3m2!1sro!2sro!4v1614153413599!5m2!1sro!2sro" style="height: 40vh; width:100%" allowfullscreen="" loading="lazy"></iframe>
-
-            <!-- <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="map" src="https://maps.google.com
-            maps?q=pelicanului%2013&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div> -->
-        </div> <!-- / .section_row -->
-      </div> <!-- / .section_map -->
+      {% include "artisan_app/newsletter.html" %}
+      {% include "artisan_app/map.html" %}
 
       {% include "artisan_app/footer.html" %}
 
@@ -404,21 +304,23 @@
 ================================================= -->
 
     <!-- JS Global -->
-    <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script>
+    <!-- <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
     <!-- JS Plugins -->
-    <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <!-- <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
     <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
     <script src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script>
     <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
 
     <!-- JS Custom -->
-    <script src="{% static 'js/custom.js' %}"></script>
+    <!-- <script src="{% static 'js/custom.js' %}"></script>
     <script src="{% static 'js/google_maps.js' %}"></script>
 
     <!-- Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTGnDWmYKPhKslCvPfkrcZDpgT_QMHT0s&callback=initMap" async defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTGnDWmYKPhKslCvPfkrcZDpgT_QMHT0s&callback=initMap" async defer></script>
 
   </body>
-</html>
+</html>   -->
+
+{% endblock %}

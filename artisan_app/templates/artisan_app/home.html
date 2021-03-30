@@ -34,7 +34,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index_default.html">{{ slogans.brand }}</a>
+          <a class="navbar-brand" href="{% url 'home' %}">{{ slogans.brand }}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,6 +58,11 @@
             <li><a href="{% url 'events' %}">Evenimente</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
             <li><a href="{% url 'contacts' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+            <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
+            <li><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
+
+            {% endif %}
 
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -72,7 +77,7 @@
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
             <div class="welcome_content">
-              <h1 class="welcome_content_heading"><img src="{% static 'img/LOGO-ARTISAN-BAKERY.png' %}" alt="Artisan-Bakery-Logo" width="650" height="650"></h1>
+              <h1 class="welcome_content_heading"><img src="{% static 'img/LOGO-ARTISAN-BAKERY.png' %}" alt="Artisan-Bakery-Logo" width="550" height="550"></h1>
               <p class="welcome_content_subheading">Cake & Coffee Shop</p>
               <ul class="welcome_content_logo">
                 <li><i class="icon ion-ios-minus-empty"></i></li>
@@ -83,7 +88,6 @@
               </ul>
               <!-- <h3 class="welcome_content_caption">Goodies made with natural ingredients, love and passion.</h3> -->
               <h3 class="welcome_content_caption">Bunatati facute cu ingrediente naturale, dragoste si pasiune.</h3>
-
               <div class="welcome_content_btn">
                 <!-- <a href="#section_about" class="btn btn-default">Discover</a> -->
                 <a href="#section_about" class="btn btn-default">Descopera-ne</a>
@@ -101,13 +105,13 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <h2 class="section_title"><span>&#8722; Povestea noastra &#8722;</span></h2>
+            <h2 class="section_title"><span>&#8722; Ceva despre noi &#8722;</span></h2>
             <hr class="section_title_line">
-            <p class="section_caption">{{ story.our_story|safe }}</p>
+            <p class="section_caption text-justify">{{ story.our_story|safe }}</p>
           </div>
         </div> <!-- .row -->
       </div> <!-- .container -->
-      <div class="section_about__row">
+      <!-- <div class="section_about__row">
         <div class="about__img">
           <img src="{{ story.traditions_image.url }}" class="img-responsive" alt="...">
         </div>
@@ -115,7 +119,7 @@
           <h3 class="about_desc__title">Traditii</h3>
           <p class="about_desc__text">{{ story.traditions|safe }}</p>
         </div>
-      </div> <!-- .section_about__row -->
+      </div> <!-- .section_about__row --
       <div class="section_about__row">
         <div class="about_desc">
           <h3 class="about_desc__title">Servicii</h3>
@@ -124,7 +128,7 @@
         <div class="about__img">
           <img src="{{ story.service_image.url }}" class="img-responsive" alt="...">
         </div>
-      </div> <!-- .section_about__row -->
+      </div> <!-- .section_about__row --
       <div class="section_about__row">
         <div class="about__img">
           <img src="{{ story.history_image.url }}" class="img-responsive" alt="...">
@@ -141,9 +145,11 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <h2 class="section_title">&#8722; Our team &#8722;</h2>
+            <!-- <h2 class="section_title">&#8722; Our team &#8722;</h2> -->
+            <h2 class="section_title">&#8722; Echipa noastra &#8722;</h2>
+
             <hr class="section_title_line">
-            <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, facere.</p>
+            <p class="section_caption">Sufletul cofetariei</p>
           </div>
         </div>
         <div class="row">
@@ -183,7 +189,7 @@
             <h2 class="section_title">&#8722; Meniu &#8722;</h2>
 
             <hr class="section_title_line">
-            <p class="section_caption">Some text...</p>
+            <p class="section_caption"></p>
           </div>
         </div>
         <div class="row">
@@ -215,17 +221,6 @@
             </div>
           </div>
           {% endfor %}
-          <!-- {% for recipe in tarte_dulci %}
-          <div class="col-sm-4 menu__item tarte">
-            <div class="menu__item_hover">
-              <img src="{{ recipe.photo.url }}" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>{{ recipe.recipe_name }} <span class="price">{{ recipe.price_tag }}</span></h3>
-                <p class="overlay_info">{{ recipe.description }}</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %} -->
           {% for recipe in fursecuri %}
           <div class="col-sm-4 menu__item fursecuri">
             <div class="menu__item_hover">
@@ -281,285 +276,6 @@
             </div>
           </div>
           {% endfor %}
-          <!-- <div class="col-sm-4 menu__item menu_breakfast">
-            <div class="menu__item_hover">
-              <img src="assets/img/breakfast_2.jpg' %}" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$10</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_breakfast">
-            <div class="menu__item_hover">
-              <img src="assets/img/breakfast_3.jpg' %}" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum<span class="price">$8</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_breakfast">
-            <div class="menu__item_hover">
-              <img src="assets/img/breakfast_4.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$7.5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_breakfast">
-            <div class="menu__item_hover">
-              <img src="assets/img/breakfast_5.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$5.5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_breakfast">
-            <div class="menu__item_hover">
-              <img src="assets/img/breakfast_6.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$8</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_lunch" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/lunch_1.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$15</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_lunch" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/lunch_2.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$8.5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_lunch" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/lunch_3.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$13.5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_lunch" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/lunch_4.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$7.8</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_lunch" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/lunch_5.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$9.5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_lunch" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/lunch_6.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$12</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_dinner" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/dinner_1.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$14</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_dinner" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/dinner_2.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$11.5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_dinner" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/dinner_3.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$10.5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_dinner" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/dinner_4.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$13</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_dinner" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/dinner_5.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$21</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_dinner" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/dinner_6.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$19</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_dinner" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/dinner_7.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$17</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_drinks" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/drinks_1.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$6</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_drinks" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/drinks_2.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$7</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_drinks" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/drinks_3.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$4</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_drinks" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/drinks_4.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$18</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_drinks" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/drinks_5.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$11</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_drinks" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/drinks_6.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$12</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_drinks" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/drinks_7.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$15</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_desserts" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/desserts_1.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$11</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_desserts" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/desserts_2.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$10</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_desserts" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/desserts_3.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$7.5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_desserts" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/desserts_4.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$8</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_desserts" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/desserts_5.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$5</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 menu__item menu_desserts" style="display: none;">
-            <div class="menu__item_hover">
-              <img src="assets/img/desserts_6.jpg" class="img-responsive" alt="...">
-              <div class="menu__item_overlay">
-                <h3>Lorem ipsum <span class="price">$12</span></h3>
-                <p class="overlay_info">Ingredients: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing.</p>
-              </div>
-            </div>
-          </div> -->
         </div> <!-- .row -->
       </div> <!-- .container -->
     </section>
@@ -598,51 +314,6 @@
             </a>
           </div>
           {% endfor %}
-          <!-- <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_2.jpg' %}' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_2.jpg' %}' %}" class="img-responsive" alt="...">
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_3.jpg' %}' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_3.jpg' %}' %}" class="img-responsive" alt="...">
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_4.jpg' %}' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_4.jpg' %}' %}" class="img-responsive" alt="...">
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_5.jpg' %}' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_5.jpg' %}' %}" class="img-responsive" alt="...">
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_6.jpg' %}' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_6.jpg' %}' %}" class="img-responsive" alt="...">
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_7.jpg' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_7.jpg' %}" class="img-responsive" alt="...">
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_8.jpg' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_8.jpg' %}" class="img-responsive" alt="...">
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_9.jpg' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_9.jpg' %}" class="img-responsive" alt="...">
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-6 gallery__item">
-            <a href="{% static 'img/gallery_10.jpg' %}" data-lightbox="gallery">
-              <img src="{% static 'img/gallery_10.jpg' %}" class="img-responsive" alt="...">
-            </a>
-          </div> -->
         </div> <!-- .row -->
       </div> <!-- .container -->
     </section>
@@ -729,7 +400,7 @@
             <h2 class="section_title">&#8722; Evenimente &#8722;</h2>
 
             <hr class="section_title_line">
-            <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, assumenda vitae earum voluptatibus.</p>
+            <p class="section_caption"></p>
           </div>
         </div> <!-- .row -->
       </div> <!-- .container -->
@@ -837,36 +508,38 @@
           </div>
         </div> <!-- .row -->
         <div class="row">
+          {% for post in posts %}
           <div class="col-sm-4">
             <div class="blog__item blog__item1">
               <div class="blog-item__img">
-                <img src="{% static 'img/gallery_1.jpg' %}" class="img-responsive" alt="...">
+                <img src="{{ post.image.url }}" class="img-responsive" alt="...">
               </div>
               <div class="blog-item__content">
-                <a href="{% url 'blog_post' %}" class="blog-item__title">
-                  <h3>How to serve a table</h3>
+                <a href="{% url 'blog_post' pk=post.pk %}" class="blog-item__title">
+                  <h3>{{ post.title }}</h3>
                 </a>
                 <div class="blog-item__info">
                   <ul class="item-info__list">
-                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 5 Comments</li>
-                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 2 hours ago</li>
+                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> {{ post.author.first_name }} {{ post.author.last_name }}</li>
+                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i>{{ post.comment_count }}</li>
+                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i>{{ post.created_date|date:"d N Y" }}</li>
                   </ul>
                 </div>
                 <div class="blog-item__text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
+                  {{ post.text|safe|truncatechars:200 }}
                 </div>
-                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#table,</a> <a href="#">#food,</a> <a href="#">#The Artisan Bakery</a></p>
+                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">{{ post.tags }}</a></p>
               </div> <!-- / .blog-item__content -->
             </div> <!-- / .blog__item -->
           </div>
-          <div class="col-sm-4">
+          {% endfor %}
+          <!-- <div class="col-sm-4">
             <div class="blog__item blog__item1">
               <div class="blog-item__img">
                 <img src="{% static 'img/gallery_3.jpg' %}" class="img-responsive" alt="...">
               </div>
               <div class="blog-item__content">
-                <a href="{% url 'blog_post' %}" class="blog-item__title">
+                <a href="#" class="blog-item__title">
                   <h3>Features of Spanish wine</h3>
                 </a>
                 <div class="blog-item__info">
@@ -880,8 +553,8 @@
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
                 </div>
                 <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#cook,</a> <a href="#">#recipe,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content -->
-            </div> <!-- / .blog__item -->
+              </div> <!-- / .blog-item__content
+            </div> <!-- / .blog__item
           </div>
           <div class="col-sm-4">
             <div class="blog__item blog__item1">
@@ -889,7 +562,7 @@
                 <img src="{% static 'img/gallery_5.jpg' %}" class="img-responsive" alt="...">
               </div>
               <div class="blog-item__content">
-                <a href="{% url 'blog_post' %}" class="blog-item__title">
+                <a href="#" class="blog-item__title">
                   <h3>Interior and design</h3>
                 </a>
                 <div class="blog-item__info">
@@ -903,10 +576,10 @@
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
                 </div>
                 <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#bar,</a> <a href="#">#cafe,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content -->
-            </div> <!-- / .blog__item -->
+              </div> <!-- / .blog-item__content --
+            </div> <!-- / .blog__item --
           </div>
-        </div> <!-- .row -->
+        </div> <!-- .row --
         <div class="row">
           <div class="col-sm-4">
             <div class="blog__item blog__item1">
@@ -914,7 +587,7 @@
                 <img src="{% static 'img/gallery_4.jpg' %}" class="img-responsive" alt="...">
               </div>
               <div class="blog-item__content">
-                <a href="{% url 'blog_post' %}" class="blog-item__title">
+                <a href="#" class="blog-item__title">
                   <h3>Cafe as a house</h3>
                 </a>
                 <div class="blog-item__info">
@@ -928,8 +601,8 @@
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
                 </div>
                 <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#table,</a> <a href="#">#food,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content -->
-            </div> <!-- / .blog__item -->
+              </div> <!-- / .blog-item__content --
+            </div> <!-- / .blog__item --
           </div>
           <div class="col-sm-4">
             <div class="blog__item blog__item1">
@@ -937,7 +610,7 @@
                 <img src="{% static 'img/gallery_10.jpg' %}" class="img-responsive" alt="...">
               </div>
               <div class="blog-item__content">
-                <a href="{% url 'blog_post' %}" class="blog-item__title">
+                <a href="#" class="blog-item__title">
                   <h3>Our food traditions</h3>
                 </a>
                 <div class="blog-item__info">
@@ -951,8 +624,8 @@
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
                 </div>
                 <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#cook,</a> <a href="#">#recipe,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content -->
-            </div> <!-- / .blog__item -->
+              </div> <!-- / .blog-item__content --
+            </div> <!-- / .blog__item --
           </div>
           <div class="col-sm-4">
             <div class="blog__item blog__item1">
@@ -960,7 +633,7 @@
                 <img src="{% static 'img/gallery_7.jpg' %}" class="img-responsive" alt="...">
               </div>
               <div class="blog-item__content">
-                <a href="{% url 'blog_post' %}" class="blog-item__title">
+                <a href="#" class="blog-item__title">
                   <h3>Let's cook together!</h3>
                 </a>
                 <div class="blog-item__info">
@@ -974,9 +647,11 @@
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
                 </div>
                 <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#bar,</a> <a href="#">#cafe,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content -->
-            </div> <!-- / .blog__item -->
+              </div> <!-- / .blog-item__content --
+            </div> <!-- / .blog__item --
+
           </div>
+        -->
         </div> <!-- .row -->
         </div class="row">
           <div class="text-center">
@@ -985,7 +660,7 @@
 
           </div>
         <!-- </div> <!-- .row -->
-      <!-- </div> <!-- .container --> --> -->
+      <!-- </div> <!-- .container --> 
     </section>
     {% include 'artisan_app/contact_form.html' %}
 

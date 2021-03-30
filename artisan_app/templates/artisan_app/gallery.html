@@ -58,7 +58,11 @@
             <li><a href="{% url 'events' %}">Evenimente</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
             <li><a href="{% url 'contacts' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+            <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
+            <li  class="active"><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
 
+            {% endif %}
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
@@ -110,7 +114,7 @@
             <div class="col-sm-12">
               <h2 class="section_title">&#8722; Interior &#8722;</h2>
               <hr class="section_title_line">
-              <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam iure, quos maxime amet nostrum reiciendis, provident quisquam nulla!</p>
+              <p class="section_caption"></p>
             </div>
           </div> <!-- .row -->
           <div class="row gallery__grid">
@@ -131,9 +135,9 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
-              <h2 class="section_photo__title">&#8722; Mandria noastra &#8722;</h2>
+              <h2 class="section_photo__title">&#8722; RETETE &#8722;</h2>
               <hr class="section_title_line">
-              <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam iure, quos maxime amet nostrum reiciendis, provident quisquam nulla!</p>
+              <p class="section_caption"></p>
             </div>
           </div> <!-- .row -->
           <div class="row">

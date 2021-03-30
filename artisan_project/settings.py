@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'artisan_app',
     'ckeditor',
     'taggit',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -148,6 +149,8 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = 'public-read'
 AWS_LOCATION = 'static'
 
+#---------------------------CRISPY SETTINGS-----------------------------
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #------------------STATIC FILES SETTINGS------------------------------
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 #----------------MEDIA FILES STORAGE SETTINGS--------------------------
@@ -160,3 +163,21 @@ EMAIL_PORT = '???'
 EMAIL_USER = 'contact@artisanbakery.ro'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
+#---------------------MAILCHIMP NEWSLETTER SUBSCRIPTION-------------------------
+# MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+# MAILCHIMP_DATA_CENTER = os.environ.get('MAILCHIMP_DATA_CENTER')
+# MAILCHIMP_EMAIL_LIST_ID = os.environ.get('MAILCHIMP_EMAIL_LIST_ID')
+#-------------------SENDGRID NEWSLETTER EMAIL-----------------------------------
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+FROM_EMAIL = 'contact@artisanbakery.ro'
+
+# Toggle sandbox mode (when running in DEBUG mode)
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+
+# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
+SENDGRID_ECHO_TO_STDOUT=True

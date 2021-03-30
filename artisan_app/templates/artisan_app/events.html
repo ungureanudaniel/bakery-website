@@ -39,7 +39,11 @@
             <li class="active"><a href="{% url 'events' %}">Evenimente</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
             <li><a href="{% url 'contacts' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+            <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
+            <li  class="active"><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
 
+            {% endif %}
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
     </nav>
@@ -88,7 +92,7 @@
               <h2 class="section_title">&#8722; Saptamana aceasta &#8722; {{ this_week_events}}</h2>
 
               <hr class="section_title_line">
-              <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, assumenda vitae earum voluptatibus.</p>
+              <p class="section_caption"></p>
             </div>
           </div> <!-- .row -->
         </div> <!-- .container -->
@@ -180,7 +184,7 @@
               <h2 class="section_title">&#8722; Luna aceasta &#8722;</h2>
 
               <hr class="section_title_line">
-              <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, assumenda vitae earum voluptatibus.</p>
+              <p class="section_caption"></p>
             </div>
           </div> <!-- .row -->
         </div> <!-- .container -->

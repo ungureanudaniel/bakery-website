@@ -40,7 +40,11 @@
         <li><a href="{% url 'events' %}">Evenimente</a></li>
         <li><a href="{% url 'blog' %}">Blog</a></li>
         <li><a href="{% url 'contacts' %}">Contact</a></li>
+        {% if user.is_authenticated %}
+        <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
+        <li  class="active"><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
 
+        {% endif %}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
@@ -90,7 +94,7 @@
               <h2 class="section_title">&#8722; Meniu &#8722;</h2>
 
               <hr class="section_title_line">
-              <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit mollitia, temporibus aliquid quae, repellendus eaque? Illo harum omnis sed debitis ratione dolor.</p>
+              <p class="section_caption"></p>
             </div>
           </div>
           <div class="row">

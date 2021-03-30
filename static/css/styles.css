@@ -7383,13 +7383,13 @@ Last change:	04/21/2017
   background-size: cover;
 }
 .section_header .about_bg {
-  background-image: url(../img/slider_bg2.jpg);
+  background-image: url(../img/about_bg2.jpg);
 }
 .section_header .menu_bg {
-  background-image: url(../img/menu_bg.jpg);
+  background-image: url(../img/menu_bg2.jpg);
 }
 .section_header .gallery_bg {
-  background-image: url(../img/gallery_bg.jpg);
+  background-image: url(../img/gallery_bg2.jpg);
 }
 .section_header .events_bg {
   background-image: url(../img/events_bg.jpg);
@@ -7401,7 +7401,11 @@ Last change:	04/21/2017
   background-image: url(../img/reservation_bg_2.jpg);
 }
 .section_header .contacts_bg {
-  background: url(../img/contacts_bg.jpg) no-repeat center center / cover;
+  background: url(../img/contact.png) no-repeat center center / cover;
+}
+
+.section_header .newsletter_bg {
+  background: url(../img/newsletter.png) no-repeat center center / cover;
 }
 /*** 3. Section: Welcome ***/
 .section_welcome {
