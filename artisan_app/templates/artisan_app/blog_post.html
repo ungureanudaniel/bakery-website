@@ -30,7 +30,7 @@
             <li><a href="{% url 'gallery' %}">Gallery</a></li>
             <li><a href="{% url 'events' %}">Events</a></li>
             <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
-            <!-- <li><a href="{% url 'contacts' %}">Contacts</a></li> --> -->
+            <!-- <li><a href="{% url 'contacts' %}">Contacts</a></li> --> 
 
             <!-- General links romanian-->
             <li><a href="{% url 'home' %}">Acasa</a></li>
@@ -115,8 +115,8 @@
                   <div class="blog-item__footer">
                     <div class="footer__item">
                       <ul class="item-info__list">
-                        <li class="info-list__item"><i class="ion ion-android-person"></i> by {{ post.author.first_name }} {{ post.author.last_name }}</li>
-                        <li class="info-list__item"><i class="ion ion-android-chat" aria-hidden="true"></i>{{ post.comment_count }} Comments</li>
+                        <li class="info-list__item"><i class="ion ion-android-person"></i> by {{ the_post.author.first_name }} {{ the_post.author.last_name }}</li>
+                        <li class="info-list__item"><i class="ion ion-android-chat" aria-hidden="true"></i> {{ the_post.comments.count }} Comments</li>
                       </ul> <!-- .item-info__list -->
                     </div> <!-- .footer__item -->
                     <div class="footer__item">
@@ -133,62 +133,75 @@
               <div class="comments">
                 <h4 class="subheading">Comments</h4>
                 <ul class="comments__list">
-                  {% for comment in comments %}
+                  {% if not the_post.comments.all %}
                   <li class="comment">
+                    <!-- <div class="comment__user">
+                      No comments yet
+                    </div> -->
                     <div class="comment__user">
-                      {{ comment.name }}
+                      Nici un comentariu inca
                     </div>
-                    <div class="comment__date">
-                      {{ comment.timestamp }}
-                    </div>
-                    <div class="comment__message">
-                      {{ comment.text }}
-                    </div>
-                    <div class="comment__reply">
-                      <a href="">Reply</a>
-                    </div>
-                    <!-- <ul class="comments-list__children">
-                      <li class="comment">
-                        <div class="comment__user">
-                          John Doe
-                        </div>
-                        <div class="comment__date">
-                          April 8, 2017 at 4:15 pm
-                        </div>
-                        <div class="comment__message">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </div>
-                        <div class="comment__reply">
-                          <a href="">Reply</a>
-                        </div>
-                      </li> -->
-                    <!-- </ul> <!-- .comments-list__children --> -->
-                  </li> <!-- .comment -->
-                  {% endfor %}
+                  {% elif the_post.comments.all %}
+                    {% for comment in comments %}
+                    <li class="comment">
+                      <div class="comment__user">
+                        {{ comment.name }}
+                      </div>
+                      <div class="comment__date">
+                        {{ comment.timestamp }}
+                      </div>
+                      <div class="comment__message">
+                        {{ comment.text }}
+                      </div>
+                      <div class="comment__reply">
+                        <a href="">Reply</a>
+                      </div>
+                      <!-- <ul class="comments-list__children">
+                        <li class="comment">
+                          <div class="comment__user">
+                            John Doe
+                          </div>
+                          <div class="comment__date">
+                            April 8, 2017 at 4:15 pm
+                          </div>
+                          <div class="comment__message">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                          </div>
+                          <div class="comment__reply">
+                            <a href="">Reply</a>
+                          </div>
+                        </li>  -->
+                      <!-- </ul> <!-- .comments-list__children
+                    </li> <!-- .comment -->
+                    {% endfor %}
+                  {% endif %}
                 </ul> <!-- .comments__list -->
 
 
-                <h4 class="subheading">Leave a comment</h4>
+                <!-- <h4 class="subheading">Leave a comment</h4> -->
+                <h4 class="subheading">Lasa un comentariu</h4>
+
                 <form class="comments__form" method="POST" action=".">
                   {% csrf_token %}
                   <div class="form-group">
-                    <label for="name" class="sr-only">Name (Required)</label>
-                    <input type="text" name="form-name" class="form-control" id="name" placeholder="Enter Your Full Name">
+                    <!-- <label for="name" class="sr-only">Name (Required)</label> -->
+                    <label for="name" class="sr-only">Nume (Obligatoriu)</label>
+
+                    <input type="text" name="form-name" class="required form-control" id="name" placeholder="Enter Your Full Name">
                   </div>
 
                   <div class="form-group">
-                    <label for="email" class="sr-only">Email address (Required)</label>
-                    <input type="email" name="form-email" class="form-control" id="email" placeholder="Enter Your E-mail">
+                    <!-- <label for="email" class="sr-only">Email address (Required)</label> -->
+                    <label for="email" class="sr-only">Adresa Email (Obligatoriu)</label>
+
+                    <input type="email" name="form-email" class="required form-control" id="email" placeholder="Enter Your E-mail">
                   </div>
 
                   <div class="form-group">
-                    <label for="website" class="sr-only">Website</label>
-                    <input type="email" name="form-website" class="form-control" id="website" placeholder="Enter website">
-                  </div>
+                    <!-- <label for="message" class="sr-only">Message (Required)</label> -->
+                    <label for="message" class="sr-only">Mesaj (Obligatoriu)</label>
 
-                  <div class="form-group">
-                    <label for="message" class="sr-only">Message (Required)</label>
-                    <textarea name="form-message" class="form-control" rows="6" id="message" placeholder="Enter Your Message"></textarea>
+                    <textarea name="form-message" class="required form-control" rows="6" id="message" placeholder="Enter Your Message"></textarea>
                     <span class="help-block"></span>
                   </div>
 
@@ -223,7 +236,7 @@
                   <ul class="recent__posts">
                     {% for item in posts %}
                     <li>
-                      <a href="#" class="post__title">
+                      <a href="{% url 'blog_post' pk=item.pk %}" class="post__title">
                         <h5 class="post__title">{{ item.title }}</h5>
                         <p class="post__desc">
                           {{ item.text|safe|truncatechars:100 }}
@@ -296,9 +309,8 @@
 
       <!-- section newsletter -->
       {% include "artisan_app/newsletter.html" %}
-      {% include "artisan_app/map.html" %}
 
-      {% include "artisan_app/footer.html" %}
+      <!-- {% include "artisan_app/footer.html" %} -->
 
 <!-- JS
 ================================================= -->

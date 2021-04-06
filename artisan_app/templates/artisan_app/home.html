@@ -77,7 +77,7 @@
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
             <div class="welcome_content">
-              <h1 class="welcome_content_heading"><img src="{% static 'img/LOGO-ARTISAN-BAKERY.png' %}" alt="Artisan-Bakery-Logo" width="550" height="550"></h1>
+              <h1 class="welcome_content_heading"><img class="#" src="{% static 'img/LOGO-ARTISAN-BAKERY.png' %}" alt="Artisan-Bakery-Logo" width="300" height="300"></h1>
               <p class="welcome_content_subheading">Cake & Coffee Shop</p>
               <ul class="welcome_content_logo">
                 <li><i class="icon ion-ios-minus-empty"></i></li>
@@ -186,22 +186,15 @@
         <div class="row">
           <div class="col-sm-12">
             <!-- <h2 class="section_title">&#8722; Menu &#8722;</h2> -->
-            <h2 class="section_title">&#8722; Meniu &#8722;</h2>
+            <h2 class="section_title">&#8722; Produse &#8722;</h2>
 
             <hr class="section_title_line">
-            <p class="section_caption"></p>
+            <p class="section_caption">Toate produsele noastre sunt artizanale, facute "de mana", doar cu ingrediente premium, sanatoase.</p>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
             <ul class="nav nav-tabs menu_nav">
-              <!-- <li role="presentation" class="active"><a href="#" role="tab" data-filter=".torturi">Torturi</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".tarte">Tarte</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".sarate">Sarate</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".cheesecake">Cheesecake</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".fursecuri">Fursecuri</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".paine">Paine</a></li>
-              <li role="presentation"><a href="#" role="tab" data-filter=".prajituri">Prajituri diverse</a></li> -->
               {% for item in recipe_categories %}
               <li role="presentation" class="active"><a href="#" role="tab" data-filter=".{{ item.slug }}">{{ item.title|title }}</a></li>
               {% endfor %}
@@ -287,7 +280,7 @@
           <div class="col-sm-12">
             <!-- {{ slogans }} -->
             <h1 class="slogan_title">&#8722; {{ slogans.brand }} &#8722;</h1>
-            <p class="slogan_caption">{{ slogans.text|safe }}</p>
+            <p class="slogan_caption">{{ slogans.text|striptags }}</p>
 
           </div>
         </div> <!-- .row -->
@@ -336,6 +329,17 @@
                 <li data-target="#carousel-review" data-slide-to="4"></li>
                 <li data-target="#carousel-review" data-slide-to="5"></li>
                 <li data-target="#carousel-review" data-slide-to="6"></li>
+                <li data-target="#carousel-review" data-slide-to="7"></li>
+                <li data-target="#carousel-review" data-slide-to="8"></li>
+                <li data-target="#carousel-review" data-slide-to="9"></li>
+                <li data-target="#carousel-review" data-slide-to="10"></li>
+                <li data-target="#carousel-review" data-slide-to="11"></li>
+                <li data-target="#carousel-review" data-slide-to="12"></li>
+                <li data-target="#carousel-review" data-slide-to="13"></li>
+                <li data-target="#carousel-review" data-slide-to="14"></li>
+                <li data-target="#carousel-review" data-slide-to="15"></li>
+                <li data-target="#carousel-review" data-slide-to="16"></li>
+
               </ol>
 
               <!-- Wrapper for slides -->
@@ -375,6 +379,66 @@
                 <div class="item">
                   <p class="review_text">"Am gasit aici cele mai bune prajituri, cu ingrediente naturale, fara coloranti si conservanti. Totul este facut cu dragoste! Delicios! "</p>
                   <h5 class="review_author">&#8722; Cris Manescu &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 7 -->
+                <div class="item">
+                  <p class="review_text">"Ordered a cake, and it's delicious. Seems to be made with fresh, quality ingredients."</p>
+                  <h5 class="review_author">&#8722; Claudia B. &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 8 -->
+                <div class="item">
+                  <p class="review_text">"Toate produsele care le-am incercat m-au facut sa revin. Recomand!!! "</p>
+                  <h5 class="review_author">&#8722; Claudia Popescu &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 9 -->
+                <div class="item">
+                  <p class="review_text">"Foarte delicioase produse. Un plus mare faptul că sunt naturale. Păcat că nu e așa accesibila locația pentru mine."</p>
+                  <h5 class="review_author">&#8722; Rallucu1 &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 10 -->
+                <div class="item">
+                  <p class="review_text">"Cookies, cakes, pies, bread - cooked with care, love and natural, local ingredients. I love this place!"</p>
+                  <h5 class="review_author">&#8722; Anton Irina &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 11 -->
+                <div class="item">
+                  <p class="review_text">"Ador echipa Artizan Bakery ! Tot ce se gătește aici e gustos , delicios și sănătos ! Am fost aici de multe ori aici și am avut bucuria și plăcerea de a gusta din toate bunătățile pregătite cu multă dragoste și dăruire ! Vă iubim !"</p>
+                  <h5 class="review_author">&#8722; Raluca Ungureanu &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 12 -->
+                <div class="item">
+                  <p class="review_text">"Artisan Bakery, un start up nou din Avangarden, a unor prieteni dragi, Ioana & Daniel, un vis devenit realitate. Visul lor, delectare noastra! Din cuptorul lor ies minuni: pita cu maia, tarte sărate sau dulci cu niște combinații pe care nu le-am mai încercat pana acum și prăjituri... Uuuf, multe prăjituri drăguțe, care îți fac cu niște mânuțe mici semn de pe raft și te strigaaa... Si cafea de la croitorie, și laptele e lapte, și untul e unt și oul e ou adevărat, nu praf... Deci, se respecta cu ingrediente cât mai locale. Recomand cu drag! "</p>
+                  <h5 class="review_author">&#8722; Angela Boghiu &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 13 -->
+                <div class="item">
+                  <p class="review_text">"Cozy, kid friendly cafe with amazing pastries and good coffee! Perfect for children with play corners where you can paint on the walls! Everything is baked in the store and tastes sweet for some money. The owners are very welcoming. Highly recommended! "</p>
+                  <h5 class="review_author">&#8722; Ida Wallin &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 14 -->
+                <div class="item">
+                  <p class="review_text">"Recomand aceasta locatie pentru a savura cele mai delicioase prăjituri, torturi si sucuri, într-un cadru relaxant, alaturi de personalul care te întâmpină cu căldură."</p>
+                  <h5 class="review_author">&#8722; Anai I &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 15 -->
+                <div class="item">
+                  <p class="review_text">"Pasiune in bucate! Multumim Artisan Bakery pentru rasfat! 😊😉Vom reveni mereu cu mare drag.  "</p>
+                  <h5 class="review_author">&#8722; Alexandra Ana &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 16 -->
+                <div class="item">
+                  <p class="review_text">"this place has amazing cakes, quiches, coffee and hot chocolate. cozy little place with friendly staff. much better than waiting for service at a restaurant in town"</p>
+                  <h5 class="review_author">&#8722; penseur libre &#8722;</h5>
                   <p>Sursa: Google</p>
                 </div>
                 <!-- Controls -->
@@ -428,54 +492,7 @@
                 </div>
               </div> <!-- .events_item -->
               {% endfor %}
-              <!-- <div class="events__item events__item_music">
-                <div class="events-item__body">
-                  <div class="events-item__content">
-                    <h2>Concert</h2>
-                    <h3 class="events-item__content_extra extra_title">Live concert with our friends</h3>
-                    <p class="events-item__content_extra extra_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sint similique beatae eius, reprehenderit corporis.</p>
-                    <ul class="events-item__content_extra">
-                      <li><i class="icon ion-ios-calendar-outline"></i> October 5, 2016</li>
-                      <li><i class="icon ion-ios-clock-outline"></i> 19:00</li>
-                    </ul>
-                    <div class="events-item__content_extra">
-                      <a href="#section_reservation" class="btn btn-default">Book now</a>
-                    </div>
-                  </div>
-                </div>
-              </div> <!-- .events_item -->
-              <!-- <div class="events__item events__item_poetry">
-                <div class="events-item__body">
-                  <div class="events-item__content">
-                    <h2>Poetry</h2>
-                    <h3 class="events-item__content_extra extra_title">Modern poetry</h3>
-                    <p class="events-item__content_extra extra_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione vero commodi enim, ullam ex sit mollitia, saepe assumenda.</p>
-                    <ul class="events-item__content_extra">
-                      <li><i class="icon ion-ios-calendar-outline"></i> October 9, 2016</li>
-                      <li><i class="icon ion-ios-clock-outline"></i> 20:00</li>
-                    </ul>
-                    <div class="events-item__content_extra">
-                      <a href="#section_reservation" class="btn btn-default">Book now</a>
-                    </div>
-                  </div>
-                </div>
-              </div> <!-- .events_item --> -->
-              <!-- <div class="events__item events__item_wine">
-                <div class="events-item__body">
-                  <div class="events-item__content">
-                    <h2>Wine</h2>
-                    <h3 class="events-item__content_extra extra_title">Large selection of delicious wine</h3>
-                    <p class="events-item__content_extra extra_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius minima, dolorum eveniet amet aperiam eaque esse animi.</p>
-                    <ul class="events-item__content_extra">
-                      <li><i class="icon ion-ios-calendar-outline"></i> October 17, 2016</li>
-                      <li><i class="icon ion-ios-clock-outline"></i> 19:30</li>
-                    </ul>
-                    <div class="events-item__content_extra">
-                      <a href="#section_reservation" class="btn btn-default">Book now</a>
-                    </div>
-                  </div>
-                </div>
-              </div> <!-- .events_item --> --> -->
+
             </div> <!-- .events -->
           </div>
         </div> <!-- .row -->
@@ -488,8 +505,8 @@
         <div class="row">
           <div class="col-xs-12">
             <i class="ion-android-hangout"></i>
-            <p class="section-quote__text">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
-            <h2 class="section-quote__author">by Thomas Ford</h2>
+            <p class="section-quote__text">I'm a big fan of pastries the size of a baby that contain enough calories for a year. That seems like an effective use of time.</p>
+            <h2 class="section-quote__author">by Mike Birbiglia</h2>
           </div>
         </div> <!-- / .row -->
       </div> <!-- / .container -->
@@ -533,134 +550,15 @@
             </div> <!-- / .blog__item -->
           </div>
           {% endfor %}
-          <!-- <div class="col-sm-4">
-            <div class="blog__item blog__item1">
-              <div class="blog-item__img">
-                <img src="{% static 'img/gallery_3.jpg' %}" class="img-responsive" alt="...">
-              </div>
-              <div class="blog-item__content">
-                <a href="#" class="blog-item__title">
-                  <h3>Features of Spanish wine</h3>
-                </a>
-                <div class="blog-item__info">
-                  <ul class="item-info__list">
-                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 5 Comments</li>
-                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 2 hours ago</li>
-                  </ul>
-                </div>
-                <div class="blog-item__text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                </div>
-                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#cook,</a> <a href="#">#recipe,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content
-            </div> <!-- / .blog__item
-          </div>
-          <div class="col-sm-4">
-            <div class="blog__item blog__item1">
-              <div class="blog-item__img">
-                <img src="{% static 'img/gallery_5.jpg' %}" class="img-responsive" alt="...">
-              </div>
-              <div class="blog-item__content">
-                <a href="#" class="blog-item__title">
-                  <h3>Interior and design</h3>
-                </a>
-                <div class="blog-item__info">
-                  <ul class="item-info__list">
-                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 7 Comments</li>
-                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 5 hours ago</li>
-                  </ul>
-                </div>
-                <div class="blog-item__text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                </div>
-                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#bar,</a> <a href="#">#cafe,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content --
-            </div> <!-- / .blog__item --
-          </div>
-        </div> <!-- .row --
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="blog__item blog__item1">
-              <div class="blog-item__img">
-                <img src="{% static 'img/gallery_4.jpg' %}" class="img-responsive" alt="...">
-              </div>
-              <div class="blog-item__content">
-                <a href="#" class="blog-item__title">
-                  <h3>Cafe as a house</h3>
-                </a>
-                <div class="blog-item__info">
-                  <ul class="item-info__list">
-                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 10 Comments</li>
-                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 12 hours ago</li>
-                  </ul>
-                </div>
-                <div class="blog-item__text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                </div>
-                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#table,</a> <a href="#">#food,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content --
-            </div> <!-- / .blog__item --
-          </div>
-          <div class="col-sm-4">
-            <div class="blog__item blog__item1">
-              <div class="blog-item__img">
-                <img src="{% static 'img/gallery_10.jpg' %}" class="img-responsive" alt="...">
-              </div>
-              <div class="blog-item__content">
-                <a href="#" class="blog-item__title">
-                  <h3>Our food traditions</h3>
-                </a>
-                <div class="blog-item__info">
-                  <ul class="item-info__list">
-                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 5 Comments</li>
-                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 2 hours ago</li>
-                  </ul>
-                </div>
-                <div class="blog-item__text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                </div>
-                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#cook,</a> <a href="#">#recipe,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content --
-            </div> <!-- / .blog__item --
-          </div>
-          <div class="col-sm-4">
-            <div class="blog__item blog__item1">
-              <div class="blog-item__img">
-                <img src="{% static 'img/gallery_7.jpg' %}" class="img-responsive" alt="...">
-              </div>
-              <div class="blog-item__content">
-                <a href="#" class="blog-item__title">
-                  <h3>Let's cook together!</h3>
-                </a>
-                <div class="blog-item__info">
-                  <ul class="item-info__list">
-                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 2 Comments</li>
-                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 7 hours ago</li>
-                  </ul>
-                </div>
-                <div class="blog-item__text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                </div>
-                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#bar,</a> <a href="#">#cafe,</a> <a href="#">#The Artisan Bakery</a></p>
-              </div> <!-- / .blog-item__content --
-            </div> <!-- / .blog__item --
-
-          </div>
-        -->
         </div> <!-- .row -->
         </div class="row">
           <div class="text-center">
             <!-- <button type="button" class="btn btn-default">More posts</button> -->
-            <button type="button" class="btn btn-default">Vezi mai mult</button>
+            <button type="button" class="btn btn-default"><a href="{% url 'blog' %}">Vezi mai mult</a></button>
 
           </div>
-        <!-- </div> <!-- .row -->
-      <!-- </div> <!-- .container --> 
+        <!-- </div> --> <!-- .row -->
+      <!-- </div> --> <!-- .container -->
     </section>
     {% include 'artisan_app/contact_form.html' %}
 
@@ -668,7 +566,11 @@
 
     {% include 'artisan_app/map.html' %}
     {% include 'artisan_app/footer.html' %}
-
+    <!-- TO THE TOP BUTTON
+    ================================================== -->
+    <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" onclick="topFunction()" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+      <i class="ion-android-arrow-up"></i>
+    </a>
 
     <!-- JS
     ================================================== -->
@@ -689,6 +591,7 @@
 
     <!-- Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTGnDWmYKPhKslCvPfkrcZDpgT_QMHT0s&callback=initMap" async defer></script>
+    <script src="{% static 'js/back_to_top.js' %}"></script>
 
   </body>
 </html>

@@ -60,7 +60,7 @@
             <li><a href="{% url 'contacts' %}">Contact</a></li>
             {% if user.is_authenticated %}
             <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
-            <li  class="active"><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
+            <li><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
 
             {% endif %}
           </ul>
@@ -135,7 +135,9 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
-              <h2 class="section_photo__title">&#8722; RETETE &#8722;</h2>
+              <!-- <h2 class="section_photo__title">&#8722; Goodies &#8722;</h2> -->
+
+              <h2 class="section_photo__title">&#8722; Bunatati &#8722;</h2>
               <hr class="section_title_line">
               <p class="section_caption"></p>
             </div>
@@ -149,7 +151,7 @@
                 <div class="dishes_carousel__item">
                   <img src="{{ item.photo.url }}" class="img-responsive" alt="...">
                   <div class="dishes_carousel__item__caption">
-                    Lorem ipsum dolor sit amet consectetur.
+                    {{ item.recipe_name }}
                   </div>
                 </div>
                 {% endfor %}
@@ -166,6 +168,9 @@
     {% include 'artisan_app/map.html' %}
     {% include 'artisan_app/footer.html' %}
 
+    <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" onclick="topFunction()" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+      <i class="ion-android-arrow-up"></i>
+    </a>
 
     <!-- JS
     ================================================== -->
@@ -186,6 +191,7 @@
 
     <!-- Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTGnDWmYKPhKslCvPfkrcZDpgT_QMHT0s&callback=initMap" async defer></script>
+    <script src="{% static 'js/back_to_top.js' %}"></script>
 
   </body>
 </html>

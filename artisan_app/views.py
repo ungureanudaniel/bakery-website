@@ -5,11 +5,13 @@ from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 from django.conf import settings
 import random
+from django.contrib.auth.models import User
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from django.db.models import Q, Count
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Team, Gallery, RecipeCategory, Menu, Slogan, Review, Story, Event, Fact, BlogPost, Comment, NewsletterUser
+from .models import Team, Gallery, RecipeCategory, Menu, Slogan, Review, Story, Event, BlogPost, Comment, NewsletterUser, OurFact
 from .forms import CommentForm, SendNewsletterForm
 from .utils import fb_followers_count
 from django.core.mail import send_mail, BadHeaderError
@@ -235,13 +237,15 @@ def home_view(request):
 #------------------------ABOUT VIEW----------------------------------------ABOUT
 def about_view(request):
     template = 'artisan_app/about.html'
+    slogans = Slogan.objects.last()
     team = Team.objects.all()
-    facts = Fact.objects.all()
+    facts = OurFact.objects.all()
     story = Story.objects.last()
     context = {
         "story": story,
         "team":team,
         "facts": facts,
+        "slogans": slogans,
     }
 
     return render(request, template, context)
@@ -250,17 +254,24 @@ def about_view(request):
 def blog_view(request):
     template = 'artisan_app/blog.html'
     posts = BlogPost.objects.filter(status='Published')
+    # nr_comments = Comment.objects.values('post').annotate(Count('post'))
+    nr_comments = BlogPost.objects.annotate(comment_count=Count('comments')).values()
+    # count = nr_comments.values('comments', 'comments__count')
 
     content = {
-    "posts": posts
+    "nr_comments": nr_comments,
+    "posts": posts,
+    # "count": count
     }
     return render(request, template, content)
 
 #------------------------BLOG POST VIEW--------------------------------BLOG POST
 def blog_post_view(request, pk):
     template = 'artisan_app/blog_post.html'
-    the_post =BlogPost.objects.get(pk =pk)
+    the_post = BlogPost.objects.get(pk = pk)
+    # nr_comments = Post.objects.values('comments').annotate(Count('comments'))
     comments = Comment.objects.filter(post = the_post)
+
     posts = BlogPost.objects.filter(status='Published')
     common_tags = BlogPost.tags.filter(pk=pk)
     new_comment = None
@@ -268,23 +279,23 @@ def blog_post_view(request, pk):
         form_name = request.POST.get('form-name')
         form_email = request.POST.get('form-email')
         message = request.POST.get('form-message')
-        if comment_form.is_valid():
+        if form_name and form_email and message:
             # Create Comment object but don't save to database yet
-            new_comment = comment_form.save(commit=False)
+            new_comment = Comment(name=form_name, email=form_email, text=message)
             # Assign the current post to the comment
-            new_comment.post = post
+            new_comment.post = the_post
             # Save the comment to the database
             new_comment.save()
-    else:
-        comment_form = CommentForm()
+
 
     content = {
+        "new_comment": new_comment,
         "common_tags": common_tags,
         "posts": posts,
         "the_post": the_post,
         "comments": comments,
         "new_comment": new_comment,
-        "comment_form": comment_form
+        # "comment_form": comment_form
     }
     return render(request, template, content)
 
@@ -356,7 +367,22 @@ def gallery_view(request):
 #------------------------EVENTS VIEW------------------------------------GALLERY
 def events_view(request):
     template = 'artisan_app/events.html'
-    return render(request, template, {})
+
+    #-------events this week------------------
+    startdate1 = datetime.date.today()
+    enddate1 = startdate1 + datetime.timedelta(days=6)
+    #-------events this month------------------
+    startdate2 = datetime.date.today()
+    enddate2 = startdate2 + datetime.timedelta(days=30)
+    
+    this_week_events = Event.objects.filter(start_date__range=[startdate1, enddate1]).order_by('start_date')
+    this_month_events = Event.objects.filter(start_date__range=[startdate2, enddate2]).order_by('start_date')
+
+    context = {
+        "this_week_events": this_week_events,
+        "this_month_events": this_month_events,
+    }
+    return render(request, template, context)
 
 #------------------------RESERVATION VIEW--------------------------------BLOG POST
 def reservation_view(request):

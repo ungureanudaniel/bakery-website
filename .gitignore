@@ -4,12 +4,12 @@
 __pycache__
 
 # Env
-.env
+artisan_project/.env
 myvenv/
 venv/
 
 # Database
-db.sqlite3
+
 
 # Static folder at project root
 /static/

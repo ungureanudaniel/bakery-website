@@ -42,9 +42,9 @@
             <li><a href="{% url 'contacts' %}">Contact</a></li>
             {% if user.is_authenticated %}
             <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
-            <li  class="active"><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
+            <li><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
 
-            {% endif %} 
+            {% endif %}
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
@@ -98,64 +98,26 @@
                 <h3 class="story_item__title">
                   {{ fact.category_ro }}
                 </h3>
-                <!-- <p class="story_item__desc">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur nemo, accusamus! Fugiat rerum impedit ducimus error, fuga, earum ea reprehenderit accusantium odio modi quisquam, ab rem iusto quod voluptatum provident.
-                </p> -->
-                <div id="odometer" class="odometer">{{ fact.figures }}</div>
+                <p class="story_item__desc">
+                </p>
+                <div id="" class="figures">{{ fact.figures }}</div>
               </div>
 
             </div>
             {% endfor %}
-            <!-- <div class="col-sm-4">
-
-              <div class="section_story__item">
-                <div class="story_item__year">
-                  <!-- 2005 -->
-                <!-- </div>
-                <i class="ion-ios-star"></i>
-                <h3 class="story_item__title">
-                  Cake sold
-                </h3> -->
-                <!-- <p class="story_item__desc">
-                  Quisquam similique quasi beatae doloremque ut voluptatum incidunt unde adipisci, perferendis nesciunt aut dolores aspernatur corrupti quaerat ducimus voluptate magni minima exercitationem non quos.
-                </p> -->
-                <!-- <p id="odometer" class="odometer">1</p>
-              </div>
-
-            </div>
-            <div class="col-sm-4">
-
-              <div class="section_story__item">
-                <div class="story_item__year">
-                  <!-- 2016 -->
-                <!-- </div>
-                <i class="ion-ios-star"></i>
-                <h3 class="story_item__title">
-                  Kg of flour used
-                </h3> -->
-                <!-- <p class="story_item__desc">
-                   Minima eaque praesentium nam perferendis quod ad, voluptate omnis eos reiciendis qui veritatis cupiditate id. Sapiente atque, maiores quia accusamus doloribus officia dignissimos, temporibus recusanda.
-                </p> -->
-                <!-- <p id="odometer" class="odometer">1</p>
-              </div>
-
-            </div> -->
           </div> <!-- / .row -->
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
               <div class="section_story__quote">
                 <div class="quote__img">
-                  <img src="{{ story.about_us_image.url }}" class="img-responsive" alt="...">
+                  <img src="{% static 'img/about_bg2.jpg' %}" class="img-responsive" alt="...">
                 </div>
                 <h3 class="qoute__title">- {{ story.motto }} -</h3>
                 <p class="qoute__text">
                   {{ story.about_us_page|safe }}
                 <p>
-                <h4 class="qoute__author">
-                  &#8722; {{ user.username.first_name }} {{ user.username.last_name }} &#8722;
-                </h4>
                 <div class="qoute__signature">
-                  <img src="{% static 'img/signature.png' %}" alt="...">
+                  <img src="{% static 'img/signature.gif' %}" alt="...">
                 </div>
               </div>
 
@@ -169,8 +131,8 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
-              <h1 class="slogan_title">&#8722; The Artisan Bakery &#8722;</h1>
-              <p class="slogan_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, cumque, quia. Laboriosam eveniet suscipit obcaecati corrupti quam.</p>
+              <h1 class="slogan_title">&#8722; {{ slogans.brand }} &#8722;</h1>
+              <p class="slogan_caption">{{ slogans.text|safe }}</p>
             </div>
           </div> <!-- .row -->
         </div> <!-- .container -->
@@ -181,9 +143,11 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
-              <h2 class="section_title">&#8722; Our team &#8722;</h2>
+              <!-- <h2 class="section_title">&#8722; Our team &#8722;</h2> -->
+              <h2 class="section_title">&#8722; Echipa noastra &#8722;</h2>
+
               <hr class="section_title_line">
-              <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus sint est quidem excepturi rem officia fugit quia maxime explicabo nisi numquam, recusandae quisquam iste earum.</p>
+              <p class="section_caption">Sufletul patiseriei.</p>
             </div>
           </div>
           <div class="row">
@@ -213,7 +177,7 @@
       </section>
 
       <!-- section join -->
-      <section class="section_join">
+      <!-- <section class="section_join">
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
@@ -226,10 +190,10 @@
               <div class="text-center">
                 <a type="button" href="{% url 'contacts' %}" class="btn btn-default">Join now</a>
               </div>
-            </div>
+            </div> -->
           </div> <!-- .row -->
         </div> <!-- .container -->
-      </section>
+      <!-- </section> -->
 {% endblock %}
 
 <!-- <script>

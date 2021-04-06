@@ -41,7 +41,7 @@
             <li><a href="{% url 'contacts' %}">Contact</a></li>
             {% if user.is_authenticated %}
             <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
-            <li  class="active"><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
+            <li><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
 
             {% endif %}
         </div><!-- /.navbar-collapse -->
@@ -83,97 +83,63 @@
         <div class="section_header__bg events_bg"></div>
       </section>
 
-      <!-- section events -->
-      <section class="section_events">
+      <!-- section events-alt -->
+      <section class="section_events-alt">
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
-              <!-- <h2 class="section_title">&#8722; This week &#8722;</h2> -->
-              <h2 class="section_title">&#8722; Saptamana aceasta &#8722; {{ this_week_events}}</h2>
+              <!-- <h2 class="section_title">&#8722; This Week &#8722;</h2> -->
+              <h2 class="section_title">&#8722; Saptamana aceasta &#8722;</h2>
 
               <hr class="section_title_line">
               <p class="section_caption"></p>
             </div>
           </div> <!-- .row -->
         </div> <!-- .container -->
-        <div class="container-fluid">
+        <div class="container">
+
           <div class="row">
-            <div class="col-md-12">
-              <div class="events">
+          {% if not this_month_events %}
+            <p class="section_caption">Din pacate nu sunt evenimente saptamana aceasta, dar tineti aproape!</p>
+          {% else %}
 
-                {% for event in this_week_events %}
-                <div class="events__item events__item_jazz">
-                  <div class="events-item__body">
-                    <div class="events-item__content">
-                      <h2>{{ event.type|safe }}</h2>
-                      <h3 class="events-item__content_extra extra_title">{{ event.title|safe }}</h3>
-                      <p class="events-item__content_extra extra_caption">{{ event.description|safe }}</p>
-                      <ul class="events-item__content_extra">
-                        <li><i class="icon ion-ios-calendar-outline"></i>{{ event.start_date|date:"d N Y" }}</li>
-                        <li><i class="icon ion-ios-clock-outline"></i>{{ event.start_date|date:"h:iA" }}</li>
-                      </ul>
-                      <div class="events-item__content_extra">
-                        <!-- <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a> -->
-                        <a href="{% url 'reservation' %}" class="btn btn-default">Rezerva acum</a>
+            {% for event in this_week_events %}
+            <div class="col-sm-6">
+              <div class="event_card">
+                <div class="event_card__img">
+                  <img src="{{ event.image.url }}" class="img-responsive" alt="...">
+                </div>
+                <div class="event_card__body">
+                  <div class="event_card__date">
+                    <i class="icon ion-ios-calendar-outline"></i>{{ event.start_date|date:"d N Y" }}
+                  </div>
+                  <h4 class="event_card__title">
+                    {{ event.title }}
+                  </h4>
+                  <div class="event_card__desc">
+                    {{ event.description|striptags|truncatechars:100 }}
+                  </div>
+                  <div class="event_card__time">
+                    <i class="ion-ios-clock-outline"></i>{{ event.start_date|date:"h:iA" }} - {{ event.end_date|date:"h:iA" }}
+                  </div>
+                  <div class="event_card__price">
+                    <i class="ion-ios-pricetags-outline"></i>{{ event.tax }} LEI
+                  </div>
+                  <hr>
+                  <div class="event_card__btn">
+                    <!-- <a href="reservation.html" class="btn btn-default">Book now</a> -->
 
-                      </div>
-                    </div>
+                    <a href="reservation.html" class="btn btn-default">Rezerva acum</a>
                   </div>
-                </div> <!-- .events_item -->
-                {% endfor %}
-                <!-- <div class="events__item events__item_music">
-                  <div class="events-item__body">
-                    <div class="events-item__content">
-                      <h2>Concert</h2>
-                      <h3 class="events-item__content_extra extra_title">Live concert with our friends</h3>
-                      <p class="events-item__content_extra extra_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sint similique beatae eius, reprehenderit corporis.</p>
-                      <ul class="events-item__content_extra">
-                        <li><i class="icon ion-ios-calendar-outline"></i> October 5, 2016</li>
-                        <li><i class="icon ion-ios-clock-outline"></i> 19:00</li>
-                      </ul>
-                      <div class="events-item__content_extra">
-                        <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
-                      </div>
-                    </div>
-                  </div>
-                </div> <!-- .events_item -->
-                <!--<div class="events__item events__item_poetry">
-                  <div class="events-item__body">
-                    <div class="events-item__content">
-                      <h2>Poetry</h2>
-                      <h3 class="events-item__content_extra extra_title">Modern poetry</h3>
-                      <p class="events-item__content_extra extra_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione vero commodi enim, ullam ex sit mollitia, saepe assumenda.</p>
-                      <ul class="events-item__content_extra">
-                        <li><i class="icon ion-ios-calendar-outline"></i> October 9, 2016</li>
-                        <li><i class="icon ion-ios-clock-outline"></i> 20:00</li>
-                      </ul>
-                      <div class="events-item__content_extra">
-                        <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
-                      </div>
-                    </div>
-                  </div>
-                </div> <!-- .events_item -->
-                <!--<div class="events__item events__item_wine">
-                  <div class="events-item__body">
-                    <div class="events-item__content">
-                      <h2>Wine</h2>
-                      <h3 class="events-item__content_extra extra_title">Large selection of delicious wine</h3>
-                      <p class="events-item__content_extra extra_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius minima, dolorum eveniet amet aperiam eaque esse animi.</p>
-                      <ul class="events-item__content_extra">
-                        <li><i class="icon ion-ios-calendar-outline"></i> October 17, 2016</li>
-                        <li><i class="icon ion-ios-clock-outline"></i> 19:30</li>
-                      </ul>
-                      <div class="events-item__content_extra">
-                        <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
-                      </div>
-                    </div>
-                  </div>
-                </div> --> <!-- .events_item -->
-              </div> <!-- .events -->
+                </div>
+              </div>
             </div>
+            {% endfor %}
+          {% endif %}
           </div> <!-- .row -->
-        </div> <!-- .container-fluid -->
+        </div> <!-- .container -->
       </section>
+
 
       <!-- section events-alt -->
       <section class="section_events-alt">
@@ -190,6 +156,11 @@
         </div> <!-- .container -->
         <div class="container">
           <div class="row">
+          {% if not this_month_events %}
+            <!-- <p class="events-item__content_extra extra_caption">Unfortunatelly there are no events within next month, but keep close for news!</p> -->
+
+            <p class="events-item__content_extra extra_caption">Din pacate nu sunt evenimente in urmatoarea luna, dar tineti aproape!</p>
+          {% else %}
             {% for event in this_month_events %}
             <div class="col-sm-6">
               <div class="event_card">
@@ -204,7 +175,7 @@
                     {{ event.title }}
                   </h4>
                   <div class="event_card__desc">
-                    {{ event.description|safe }}
+                    {{ event.description|striptags|truncatechars:100 }}
                   </div>
                   <div class="event_card__time">
                     <i class="ion-ios-clock-outline"></i>{{ event.start_date|date:"h:iA" }} - {{ event.end_date|date:"h:iA" }}
@@ -214,98 +185,14 @@
                   </div>
                   <hr>
                   <div class="event_card__btn">
-                    <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
+                    <!-- <a href="reservation.html" class="btn btn-default">Book now</a> -->
+                    <a href="{% url 'reservation' %}" class="btn btn-default">Rezerva acum</a>
                   </div>
                 </div>
               </div>
             </div>
             {% endfor %}
-            <div class="col-sm-6">
-              <div class="event_card">
-                <div class="event_card__img">
-                  <img src="{% static '/img/drinks_3.jpg' %}" class="img-responsive" alt="...">
-                </div>
-                <div class="event_card__body">
-                  <div class="event_card__date">
-                    <i class="icon ion-ios-calendar-outline"></i> 15 November
-                  </div>
-                  <h4 class="event_card__title">
-                    Craft beer festival
-                  </h4>
-                  <div class="event_card__desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exasperiores quos in quibusdam tempore dolore.
-                  </div>
-                  <div class="event_card__time">
-                    <i class="ion-ios-clock-outline"></i> 19:00 - 23:00
-                  </div>
-                  <div class="event_card__price">
-                    <i class="ion-ios-pricetags-outline"></i> $80
-                  </div>
-                  <hr>
-                  <div class="event_card__btn">
-                    <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- .row -->
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="event_card">
-                <div class="event_card__img">
-                  <img src="{% static '/img/slider_bg2.jpg' %}" class="img-responsive" alt="...">
-                </div>
-                <div class="event_card__body">
-                  <div class="event_card__date">
-                    <i class="icon ion-ios-calendar-outline"></i> 16 November
-                  </div>
-                  <h4 class="event_card__title">
-                    Groggery 7 birthday
-                  </h4>
-                  <div class="event_card__desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exasperiores quos in quibusdam tempore dolore.
-                  </div>
-                  <div class="event_card__time">
-                    <i class="ion-ios-clock-outline"></i> 15:00 - 23:00
-                  </div>
-                  <div class="event_card__price">
-                    <i class="ion-ios-pricetags-outline"></i> $100
-                  </div>
-                  <hr>
-                  <div class="event_card__btn">
-                    <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="event_card">
-                <div class="event_card__img">
-                  <img src="{% static '/img/events_jazz.jpg' %}" class="img-responsive" alt="...">
-                </div>
-                <div class="event_card__body">
-                  <div class="event_card__date">
-                    <i class="icon ion-ios-calendar-outline"></i> 30 November
-                  </div>
-                  <h4 class="event_card__title">
-                    Jazz evening
-                  </h4>
-                  <div class="event_card__desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exasperiores quos in quibusdam tempore dolore.
-                  </div>
-                  <div class="event_card__time">
-                    <i class="ion-ios-clock-outline"></i> 19:00 - 21:00
-                  </div>
-                  <div class="event_card__price">
-                    <i class="ion-ios-pricetags-outline"></i> $25
-                  </div>
-                  <hr>
-                  <div class="event_card__btn">
-                    <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {% endif %}
           </div> <!-- .row -->
         </div> <!-- .container -->
       </section>

@@ -24,10 +24,10 @@ class Story(models.Model):
 
 
 #--------------------------------FACTS CATEGORIES-------------------------------
-class Fact(models.Model):
+class OurFact(models.Model):
     category_en = models.CharField(max_length=20)
     category_ro = models.CharField(max_length=20)
-    figures = models.IntegerField()
+    figures = models.TextField()
 
     def __str__(self):
        return '{}'.format(self.category_ro)
@@ -100,13 +100,13 @@ class SendEmail(models.Model):
 
 #-------------------------------EVENTS DATA-------------------------------------
 class Event(models.Model):
-    type = models.CharField(max_length=200, default='Workshop')
+    type = models.CharField(max_length=200, default='workshop')
     title = models.CharField(max_length=200)
     description = RichTextField(blank=True, null=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     tax = models.IntegerField()
-    image = models.ImageField(upload_to='', default='static/img/events_poetry.jpg')
+    image = models.ImageField(upload_to='')
 
     def __str__(self):
         return '{}'.format(self.title)
@@ -165,7 +165,10 @@ class BlogCategory(models.Model):
 
     def __str__(self):
         return self.name
-#--------------------------BLOG MODEL------------------------------------------
+
+
+
+#--------------------------BLOG POST MODEL------------------------------------------
 class BlogPost(models.Model):
     STATUS_CHOICES = (
         ('Published', 'Published'),
@@ -176,8 +179,9 @@ class BlogPost(models.Model):
     image = models.ImageField(upload_to='menu')
     text = RichTextField(blank=True, null=True)
     category = models.ForeignKey(BlogCategory, related_name='category', on_delete=models.SET_NULL, blank=True, null=True)
-    comment_count = models.IntegerField(default=0)
-    # views_count = models.IntegerField(default=0)
+    # comment_count = models.IntegerField(default=0)
+    likes = models.ManyToManyField(User, related_name="blog_posts")
+    views_count = models.IntegerField(default=0)
     featured = models.BooleanField()
     slug = models.SlugField(default='', editable=False, max_length=200, null = False)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -187,13 +191,17 @@ class BlogPost(models.Model):
     class Meta:
         ordering = ["-created_date"]
 
+    def total_likes(self):
+        return self.likes.count()
+
     def save(self, *args, **kwargs):
         value = self.title
         self.slug = slugify(value, allow_unicode=True)
         return super(BlogPost, self).save(*args, **kwargs)
 
-    def __str__(self):
-        return self.title
+    @property
+    def views_count(self):
+        return PostViews.objects.filter(post=self).count()
 
     def get_absolute_url(self):
         kwargs = {
@@ -201,6 +209,19 @@ class BlogPost(models.Model):
             'pk': pk.self
         }
         return reverse('blog_post', kwargs=kwargs)
+
+    def __str__(self):
+        return self.title
+
+#-----------------------VIEWS COUNT MODEL ON EACH POST--------------------------
+class PostViews(models.Model):
+    IPAddres= models.GenericIPAddressField(default="84.232.140.116")
+    post = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{0} in {1} post'.format(self.IPAddres,self.post.title)
+
+
 #-----------------------COMMENTS MODEL ON EACH POST-----------------------------
 class Comment(models.Model):
     name = models.CharField(max_length=250)
@@ -208,14 +229,29 @@ class Comment(models.Model):
     email = models.EmailField()
     text = models.TextField()
     post = models.ForeignKey(BlogPost, related_name='comments', on_delete=models.CASCADE)
-    active = models.BooleanField(default=False)
-
+    active = models.BooleanField(default=True)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
     class Meta:
         ordering = ['timestamp']
 
-    def __str__(self):
-        return self.name
+    def approve(self):
+        self.approved_comment = True
+        self.save()
 
+    def __str__(self):
+        return '%s - %s' % (self.post.title, self.name)
+
+    def children(self):
+        return Comment.objects.filter(parent=self)
+
+    @property
+    def is_parent(self):
+        if self.parent is not None:
+            return False
+        return True
+
+    def get_absolute_url(self):
+        return reverse("/")
 #-----------------------QUOTE MODEL ON EACH POST-----------------------------
 class Quote(models.Model):
     text = models.TextField()

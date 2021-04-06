@@ -7395,7 +7395,7 @@ Last change:	04/21/2017
   background-image: url(../img/events_bg.jpg);
 }
 .section_header .blog_bg {
-  background-image: url(../img/slider_bg1.jpg);
+  background-image: url(../img/croissant1.jpg);
 }
 .section_header .reservation_bg {
   background-image: url(../img/reservation_bg_2.jpg);
@@ -7451,7 +7451,14 @@ Last change:	04/21/2017
   color: #f1ae2b;
   padding: 0;
   word-wrap: break-word;
+
 }
+
+/* .logo-image {
+  width: 550px;
+  height: 550px;
+} */
+
 @media (max-width: 767px) {
   .section_welcome > .container > .row [class*="col-"] .welcome_content .welcome_content_heading {
     font-size: 45px;
@@ -7941,7 +7948,10 @@ Last change:	04/21/2017
   }
 }
 .section_menu .menu__grid .menu__item {
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 .section_menu .menu__grid .menu__item .menu__item_hover {
   overflow: hidden;
@@ -7969,7 +7979,7 @@ Last change:	04/21/2017
   margin-top: 0;
   position: relative;
   font-size: 15px;
-  padding: 30px;
+  padding: 20px;
   background: rgba(0, 0, 0, 0.6);
   -webkit-transform: translateY(55px);
   transform: translateY(55px);
@@ -7979,14 +7989,16 @@ Last change:	04/21/2017
 
 @media (max-width: 991px) {
   .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay > h3 {
-    font-size: 20px;
+    font-size: 14px;
     padding: 8px;
+    padding-bottom: 30px;
     -webkit-transform: translateY(35px);
             transform: translateY(35px);
   }
 }
 @media (max-width: 767px) {
   .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay > h3 {
+    font-size: 14px;
     padding: 8px;
     -webkit-transform: translateY(35px);
             transform: translateY(35px);
@@ -7996,13 +8008,13 @@ Last change:	04/21/2017
 .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay > h3 > .price {
   color: #F1AE2B;
   float: right;
-  font-size: 20px;
-  margin-top: -5px;
+  font-size: 15px;
+  /* margin-top: -5px; */
   padding-top: 10px;
 }
 @media (max-width: 991px) {
   .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay > h3 > .price {
-    font-size: 20px;
+    font-size: 14px;
   }
 }
 .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay .overlay_info {
@@ -8118,7 +8130,7 @@ Last change:	04/21/2017
 }
 /*** 7. Section: Slogan ***/
 .section_slogan {
-  background: url(../img/slogan_bg.jpg) no-repeat center center / cover;
+  background: url(../img/Artisan_Bakery-1748.jpg) no-repeat center center / cover;
   background-attachment: fixed;
   padding: 100px 0;
   text-align: center;
@@ -8156,12 +8168,12 @@ Last change:	04/21/2017
 }
 @media (max-width: 767px) {
   .section_slogan .slogan_title {
-    font-size: 45px;
+    font-size: 35px;
   }
 }
 .section_slogan .slogan_caption {
   font-size: 19px;
-  color: #fff;
+  color: #ffffff;
   text-transform: uppercase;
   line-height: 1.8em;
   padding: 20px;
@@ -8252,7 +8264,7 @@ Last change:	04/21/2017
 }
 /*** 9. Section: Review ***/
 .section_review {
-  background: url(../img/review_bg.jpg) no-repeat center center / cover;
+  background: url(../img/Minitarte cu cioco.jpg) no-repeat center center / cover;
   background-attachment: fixed;
   padding: 100px 0;
   position: relative;
@@ -8490,9 +8502,11 @@ Last change:	04/21/2017
     margin-bottom: 20px;
   }
 }
-.section_events .events .events__item_jazz {
-  background: url(../img/events_jazz.jpg) no-repeat center center / cover;
+
+.section_events .events .events__item_workshop {
+  background: url(../img/events_workshop.jpg) no-repeat center center / cover;
 }
+
 .section_events .events .events__item_music {
   background: url(../img/events_music.jpg) no-repeat center center / cover;
 }
@@ -8505,6 +8519,7 @@ Last change:	04/21/2017
 .section_events .events:hover .events__item {
   width: 16.66666667%;
 }
+
 @media (max-width: 767px) {
   .section_events .events:hover .events__item {
     width: 100%;

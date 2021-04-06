@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, Gallery, Menu, RecipeCategory, Slogan, Review, Event, BlogPost, BlogCategory, Story, Fact, Comment, NewsletterUser, SendEmail, SendEmailFooter
+from .models import Team, Gallery, Menu, RecipeCategory, Slogan, Review, Event, BlogPost, BlogCategory, Story, Comment, NewsletterUser, SendEmail, SendEmailFooter, OurFact
 
 # , SendEmail, SendEmailFooter
 
@@ -26,7 +26,12 @@ class EventAdmin(admin.ModelAdmin):
      list_display =  ['title', 'description', 'start_date', 'end_date', 'tax', 'image']
 
 class BlogPostAdmin(admin.ModelAdmin):
-     list_display =  ['id', 'title', 'text', 'image', 'category', 'comment_count', 'featured', 'slug', 'created_date', 'status']
+     list_display =  ['id', 'title', 'get_description', 'image', 'category', 'featured', 'slug', 'created_date', 'status', ]
+     def get_description(self, obj):
+        return obj.text[:100]
+     get_description.short_description = "description"
+
+
 
 class BlogCategoryAdmin(admin.ModelAdmin):
      list_display =  ['name']
@@ -34,12 +39,12 @@ class BlogCategoryAdmin(admin.ModelAdmin):
 class StoryAdmin(admin.ModelAdmin):
      list_display =  ['our_story', 'about_us_page', 'motto', 'signature', 'traditions', 'traditions_image', 'service', 'service_image', 'history', 'history_image']
 
-class FactAdmin(admin.ModelAdmin):
+class OurFactAdmin(admin.ModelAdmin):
      list_display =  ['category_en', 'category_ro', 'figures']
 
 class CommentAdmin(admin.ModelAdmin):
      list_display =  ['name', 'timestamp', 'email', 'text', 'post', 'active']
-     list_filter = ('active', 'timestamp')
+     list_filter = ('post', 'active', 'timestamp')
      search_fields = ('name', 'email', 'text')
      actions = ['approve_comments']
 
@@ -76,7 +81,7 @@ admin.site.register(Event, EventAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(BlogCategory, BlogCategoryAdmin)
 admin.site.register(Story, StoryAdmin)
-admin.site.register(Fact, FactAdmin)
+admin.site.register(OurFact, OurFactAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(NewsletterUser, NewsletterUserAdmin)
 admin.site.register(SendEmail, SendEmailAdmin)
