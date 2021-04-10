@@ -2,6 +2,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+import datetime
 from taggit.managers import TaggableManager
 
 
@@ -139,6 +140,7 @@ class Menu(models.Model):
     photo = models.ImageField(upload_to='menu')
     slug = models.SlugField(default='', max_length = 250, editable=False, null = True, blank = True)
     featured = models.BooleanField(default=False)
+    created = models.DateTimeField(default=datetime.datetime.now, blank=True)
 
     def __str__(self):
        return '{}'.format(self.recipe_name)

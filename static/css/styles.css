@@ -7948,9 +7948,6 @@ Last change:	04/21/2017
   }
 }
 .section_menu .menu__grid .menu__item {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
   padding-bottom: 20px;
 }
 .section_menu .menu__grid .menu__item .menu__item_hover {
@@ -7979,7 +7976,7 @@ Last change:	04/21/2017
   margin-top: 0;
   position: relative;
   font-size: 15px;
-  padding: 20px;
+  padding: 10px;
   background: rgba(0, 0, 0, 0.6);
   -webkit-transform: translateY(55px);
   transform: translateY(55px);
@@ -8028,7 +8025,7 @@ Last change:	04/21/2017
   -webkit-transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
           transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
   padding: 22px;
-  font-size: 10px;
+  font-size: 15px;
 }
 @media (max-width: 1199px) {
   .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay .overlay_info {
@@ -8039,14 +8036,14 @@ Last change:	04/21/2017
 }
 @media (max-width: 991px) {
   .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay .overlay_info {
-    font-size: 15px;
+    font-size: 13px;
     padding: 0 4px;
     margin: 0;
   }
 }
 @media (max-width: 767px) {
   .section_menu .menu__grid .menu__item .menu__item_hover .menu__item_overlay .overlay_info {
-    font-size: 15px;
+    font-size: 12px;
     padding: 12px;
   }
 }
@@ -8264,7 +8261,7 @@ Last change:	04/21/2017
 }
 /*** 9. Section: Review ***/
 .section_review {
-  background: url(../img/Minitarte cu cioco.jpg) no-repeat center center / cover;
+  background: url(../img/reviews_bg1.jpg) no-repeat center center / cover;
   background-attachment: fixed;
   padding: 100px 0;
   position: relative;

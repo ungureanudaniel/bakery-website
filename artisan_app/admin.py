@@ -17,6 +17,8 @@ class RecipeCategoryAdmin(admin.ModelAdmin):
 
 class MenuAdmin(admin.ModelAdmin):
      list_display =  ['recipe_name', 'slug', 'description', 'price_tag', 'category', 'photo', 'featured']
+     list_filter = ('category', 'recipe_name', 'price_tag', 'featured')
+     search_fields = ('category', 'recipe_name', 'price_tag', 'featured')
 
 class ReviewAdmin(admin.ModelAdmin):
      list_display =  ['author', 'content', 'date_posted']
