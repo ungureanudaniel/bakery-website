@@ -98,6 +98,16 @@ class SendEmail(models.Model):
     def __str__(self):
         return '{}'.format(self.title)
 
+#----------------------CONTACT FORM MESSAGES---------------------------
+class ContactData(models.Model):
+    contact_email = models.EmailField()
+    contact_subject = models.CharField(max_length=200, default='')
+    contact_message = RichTextField(blank=True, null=True)
+    contact_author = models.CharField(max_length=200)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{}'.format(self.contact_email)
 
 #-------------------------------EVENTS DATA-------------------------------------
 class Event(models.Model):

@@ -11,7 +11,7 @@ from sendgrid.helpers.mail import Mail
 from django.db.models import Q, Count
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Team, Gallery, RecipeCategory, Menu, Slogan, Review, Story, Event, BlogPost, Comment, NewsletterUser, OurFact
+from .models import Team, Gallery, RecipeCategory, Menu, Slogan, Review, Story, Event, BlogPost, Comment, NewsletterUser, OurFact, ContactData
 from .forms import CommentForm, SendNewsletterForm
 from .utils import fb_followers_count
 from django.core.mail import send_mail, BadHeaderError
@@ -305,31 +305,34 @@ def contacts_view(request):
 
     #-----------------------CONTACT LOGIC---------------------------------------
     if request.method == "POST":
+        subject = request.POST.get('subject')
         message_name = request.POST.get('name')
         message_email = request.POST.get('email')
         message = request.POST.get('message')
+        recipient = settings.EMAIL_HOST_USER
 
-
-        # if message and message_name and message_email:
-        #     context["message_name"] = message_name
-        #     try:
-        #         send_mail(
-        #         message_name,
-        #         message,
-        #         message_email,
-        #         ['contact@artisanbakery.ro']
-        #         )
-        #     except BadHeaderError:
-        #         return HttpResponse('Invalid header found.')
-        #     return HttpResponseRedirect('/contact/thanks/')
-        # else:
-        #     return render(request, template, context)
+        if subject and message and message_name and message_email:
+            new_contact = ContactData(contact_subject=subject, contact_author=message_name, contact_email=message_email, contact_message=message, timestamp=datetime.datetime.now())
+            new_contact.save()
+            try:
+                send_mail(subject, message, message_email, ['contact@artisanbakery.ro'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return HttpResponseRedirect('/')
+        else:
+            context = {
+                "message_name": message_name
+            }
+            return render(request, template, context)
         context = {
             "message_name": message_name
         }
         return render(request, template, context)
     else:
-        return render(request, template, {})
+        context = {
+
+        }
+        return render(request, template, context)
 
 #------------------------MENU VIEW------------------------------------------MENU
 def menu_view(request):
@@ -374,7 +377,7 @@ def events_view(request):
     #-------events this month------------------
     startdate2 = datetime.date.today()
     enddate2 = startdate2 + datetime.timedelta(days=30)
-    
+
     this_week_events = Event.objects.filter(start_date__range=[startdate1, enddate1]).order_by('start_date')
     this_month_events = Event.objects.filter(start_date__range=[startdate2, enddate2]).order_by('start_date')
 

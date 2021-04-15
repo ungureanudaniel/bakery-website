@@ -4,6 +4,7 @@
 __pycache__
 
 # Env
+.env
 artisan_project/.env
 myvenv/
 venv/
@@ -13,3 +14,4 @@ venv/
 
 # Static folder at project root
 /static/
+reset_password.py

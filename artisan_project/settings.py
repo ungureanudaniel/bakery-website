@@ -163,23 +163,25 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 #-----------------------EMAIL SETTINGS-----------------------------------------
-EMAIL_HOST = '???'
-EMAIL_PORT = '???'
-EMAIL_USER = 'contact@artisanbakery.ro'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = True
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
 #---------------------MAILCHIMP NEWSLETTER SUBSCRIPTION-------------------------
 # MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 # MAILCHIMP_DATA_CENTER = os.environ.get('MAILCHIMP_DATA_CENTER')
 # MAILCHIMP_EMAIL_LIST_ID = os.environ.get('MAILCHIMP_EMAIL_LIST_ID')
 #-------------------SENDGRID NEWSLETTER EMAIL-----------------------------------
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'apikey'
-SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-FROM_EMAIL = 'contact@artisanbakery.ro'
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'apikey'
+# SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# FROM_EMAIL = 'contact@artisanbakery.ro'
 
 # Toggle sandbox mode (when running in DEBUG mode)
 SENDGRID_SANDBOX_MODE_IN_DEBUG=False

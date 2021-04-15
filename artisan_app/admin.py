@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, Gallery, Menu, RecipeCategory, Slogan, Review, Event, BlogPost, BlogCategory, Story, Comment, NewsletterUser, SendEmail, SendEmailFooter, OurFact
+from .models import Team, Gallery, Menu, RecipeCategory, Slogan, Review, Event, BlogPost, BlogCategory, Story, Comment, NewsletterUser, SendEmail, SendEmailFooter, OurFact, ContactData
 
 # , SendEmail, SendEmailFooter
 
@@ -63,10 +63,11 @@ class SendEmailAdmin(admin.ModelAdmin):
 class SendEmailFooterAdmin(admin.ModelAdmin):
     list_display =  ['version']
 
-# class RecipeAdmin(admin.ModelAdmin):
-#      list_display = ('id', 'title', 'status', 'category', 'created_date',)
-#      list_filter = ('status',)
-#      search_fields = ('title', 'text',)
+class ContactDataAdmin(admin.ModelAdmin):
+     list_display = ('contact_subject', 'contact_author', 'contact_email', 'contact_message', 'timestamp')
+     list_filter = ('contact_author', 'contact_email', 'timestamp')
+     search_fields = ('contact_author', 'contact_email')
+
 # class BlogAdmin(admin.ModelAdmin):
 #      list_display = ('id', 'title', 'status', 'category', 'created_date',)
 #      list_filter = ('status',)
@@ -88,6 +89,8 @@ admin.site.register(Comment, CommentAdmin)
 admin.site.register(NewsletterUser, NewsletterUserAdmin)
 admin.site.register(SendEmail, SendEmailAdmin)
 admin.site.register(SendEmailFooter, SendEmailFooterAdmin)
+admin.site.register(ContactData, ContactDataAdmin)
+
 
 
  # admin.site.register(Contacts, ContactsAdmin)
