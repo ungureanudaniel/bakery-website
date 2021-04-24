@@ -5,7 +5,7 @@ __pycache__
 
 # Env
 .env
-artisan_project/.env
+/artisan_project/.env
 myvenv/
 venv/
 

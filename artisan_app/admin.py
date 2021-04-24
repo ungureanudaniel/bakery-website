@@ -54,7 +54,7 @@ class CommentAdmin(admin.ModelAdmin):
         queryset.update(active=True)
 
 class NewsletterUserAdmin(admin.ModelAdmin):
-    list_display =  ['email', 'conf_num', 'confirmed', 'timestamp']
+    list_display =  ['email', 'conf_num', 'voucher_prize', 'confirmed', 'timestamp']
 #
 
 class SendEmailAdmin(admin.ModelAdmin):

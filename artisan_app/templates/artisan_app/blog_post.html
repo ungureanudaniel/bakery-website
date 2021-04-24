@@ -30,7 +30,7 @@
             <li><a href="{% url 'gallery' %}">Gallery</a></li>
             <li><a href="{% url 'events' %}">Events</a></li>
             <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
-            <!-- <li><a href="{% url 'contacts' %}">Contacts</a></li> --> exit
+            <!-- <li><a href="{% url 'contacts' %}">Contacts</a></li> -->
 
             <!-- General links romanian-->
             <li><a href="{% url 'home' %}">Acasa</a></li>
@@ -215,90 +215,57 @@
             <div class="col-sm-4">
               <div class="blog__sidebar">
                 <div class="sidebar__item">
-                  <h4 class="subheading">Search</h4>
-                  <form class="search-form" role="search">
+                  <!-- <h4 class="subheading">Search</h4> -->
+                  <h4 class="subheading">Cautare</h4>
+
+                  <form class="search-form" role="search" method="POST">
+                    {% csrf_token %}
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Enter keywords">
+                      <input type="text" class="form-control" name="keyword" placeholder="Enter keywords">
                     </div>
-                    <button type="submit" class="btn btn-default btn-block">Search</button>
+                    <a href="{% url 'search_blogposts' %}" class="btn btn-default">Cautare</a>
                   </form> <!-- .search-form -->
-                  <h4 class="subheading">Categories</h4>
+                  <!-- <h4 class="subheading">Categories</h4> -->
+                  <h4 class="subheading">Categorii</h4>
+
                   <ul class="categories">
-                    <li><a href="#">Food</a></li>
-                    <li><a href="#">Restaurant</a></li>
-                    <li><a href="#">Recipes</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Events</a></li>
+                    {% for cat in cats %}
+                    <li><a href="#">{{ cat.name|title }}</a></li>
+                    {% endfor %}
                   </ul> <!-- .categories -->
                 </div> <!-- .sidebar__item -->
                 <div class="sidebar__item">
-                  <h4 class="subheading">Recent posts</h4>
+                  <!-- <h4 class="subheading">Recent posts</h4> -->
+                  <h4 class="subheading">Postari recente</h4>
+
                   <ul class="recent__posts">
                     {% for item in posts %}
                     <li>
                       <a href="{% url 'blog_post' pk=item.pk %}" class="post__title">
                         <h5 class="post__title">{{ item.title }}</h5>
                         <p class="post__desc">
-                          {{ item.text|safe|truncatechars:100 }}
+                          {{ item.text|striptags|truncatechars:100 }}
                         </p>
-                        <p class="post__info"><i class="ion ion-android-calendar"></i>{{ item.created_date|date:"d N Y" }}</p>
+                        <p class="post__info"><i class="ion ion-android-calendar"></i> {{ item.created_date|date:"d N Y" }}</p>
                         <p class="post__info"><i class="ion ion-android-person"></i> by {{ item.author.first_name }} {{ item.author.last_name }}</p>
                       </a>
                     </li>
                     {% endfor %}
-                    <!-- <li>
-                      <a href="#">
-                        <h5 class="post__title">Lorem ipsum dolor sit amet.</h5>
-                        <p class="post__desc">
-                          One morning, when Gregor Samsa woke from troubled dreams, he found...
-                        </p>
-                        <p class="post__info"><i class="ion ion-android-calendar"></i> 15 March, 2017</p>
-                        <p class="post__info"><i class="ion ion-android-person"></i> by John Doe</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="post__title">
-                        <h5 class="post__title">Lorem ipsum dolor sit amet.</h5>
-                        <p class="post__desc">
-                          One morning, when Gregor Samsa woke from troubled dreams, he found...
-                        </p>
-                        <p class="post__info"><i class="ion ion-android-calendar"></i> 15 March, 2017</p>
-                        <p class="post__info"><i class="ion ion-android-person"></i> by John Doe</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="post__title">
-                        <h5 class="post__title">Lorem ipsum dolor sit amet.</h5>
-                        <p class="post__desc">
-                          One morning, when Gregor Samsa woke from troubled dreams, he found...
-                        </p>
-                        <p class="post__info"><i class="ion ion-android-calendar"></i> 15 March, 2017</p>
-                        <p class="post__info"><i class="ion ion-android-person"></i> by John Doe</p>
-                      </a>
-                    </li> -->
                   </ul>
                 </div> <!-- .sidebar__item -->
                 <div class="sidebar__item">
                   <h4 class="subheading">Tags</h4>
                   <ul class="tags">
-                    {% for tag in blogpost.tags.all %}
-                    <li><a href="#">#{{ tag.name }}</a></li>
-                    <!-- <li><a href="#">#bar</a></li>
-                    <li><a href="#">#services</a></li>
-                    <li><a href="#">#cafe</a></li>
-                    <li><a href="#">#groggery</a></li>
-                    <li><a href="#">#events</a></li>
-                    <li><a href="#">#news</a></li>
-                    <li><a href="#">#restaurant</a></li> -->
-                    {% endfor %}
+
+                      <li class=""><a href="#">#copii </a><a href=""> #tort </a><a href=""> #retete </a><a href=""> #lifestyle </a><a href=""> #calatorii </a><a href=""> #slowfood </a></li>
+
                   </ul>
 
                   <h4 class="subheading">Follow us</h4>
                   <ul class="social__icons">
                     <li class="social-icons__item"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
-                    <li class="social-icons__item"><a href="#"><i class="icon ion-social-facebook-outline"></i></a></li>
-                    <li class="social-icons__item"><a href="#"><i class="icon ion-social-instagram-outline"></i></a></li>
-                    <li class="social-icons__item"><a href="#"><i class="ion-social-foursquare"></i></a></li>
+                    <li class="social-icons__item"><a href="https://www.facebook.com/artisanbakerybrasov"><i class="icon ion-social-facebook-outline"></i></a></li>
+                    <li class="social-icons__item"><a href="https://www.instagram.com/artisanbakerybrasov/"><i class="icon ion-social-instagram-outline"></i></a></li>
                   </ul> <!-- .social__icons -->
                 </div> <!-- .sidebar__item -->
               </div> <!-- .blog__sidebar -->
@@ -308,31 +275,5 @@
       </section> <!-- / .section__blog-post -->
 
       <!-- section newsletter -->
-      {% include "artisan_app/newsletter.html" %}
-
-      <!-- {% include "artisan_app/footer.html" %} -->
-
-<!-- JS
-================================================= -->
-
-    <!-- JS Global -->
-    <!-- <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-
-    <!-- JS Plugins -->
-    <!-- <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
-    <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script>
-    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-
-    <!-- JS Custom -->
-    <!-- <script src="{% static 'js/custom.js' %}"></script>
-    <script src="{% static 'js/google_maps.js' %}"></script>
-
-    <!-- Google Maps -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTGnDWmYKPhKslCvPfkrcZDpgT_QMHT0s&callback=initMap" async defer></script>
-
-  </body>
-</html>   -->
 
 {% endblock %}

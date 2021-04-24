@@ -104,7 +104,7 @@ var newsletter = (function() {
     var $form = $("#mc-embedded-subscribe-form");
 
     // Proceed form
-    function register() {
+    async function register() {
         $.ajax({
             type: $form.attr("method"),
             url: $form.attr("action"),
@@ -162,7 +162,7 @@ var reservation = (function() {
     var formActionUrl = 'reservation.php';
 
     // Methods
-    function getCurrentDate() {
+    async function getCurrentDate() {
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1;
@@ -411,8 +411,8 @@ var gallery = (function() {
     var grid;
 
     // Methods
-    function initGallery() {
-        grid = gallery.isotope({
+    async function initGallery() {
+        grid = await gallery.isotope({
             itemSelector: galleryItemSelector
         });
         grid.imagesLoaded().progress( function() {

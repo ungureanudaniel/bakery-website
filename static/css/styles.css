@@ -3041,6 +3041,7 @@ fieldset[disabled] a.btn {
   background-color: #ffffff;
   border-color: #cccccc;
 }
+
 .btn-default:focus,
 .btn-default.focus {
   color: #333333;
@@ -7587,7 +7588,7 @@ Last change:	04/21/2017
   right: 0;
   bottom: 0;
   left: 0;
-  background: #000000 url(../img/map_bg.jpg) no-repeat center center / cover;
+  /* background: #000000 url(../img/map_bg.jpg) no-repeat center center / cover; */
   z-index: -999;
 }
 .section_welcome .welcome-video_bg {
@@ -7747,7 +7748,8 @@ Last change:	04/21/2017
 .section_team .team__item {
   background-color: #fff;
   padding: 10px;
-  text-align: center;
+  /* text-align: center; */
+  margin: 0 auto;
   margin-bottom: 10px;
   position: relative;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -8668,6 +8670,7 @@ Last change:	04/21/2017
 /*** 12. Section: Blog ***/
 .section_blog {
   padding: 50px 0 100px;
+
 }
 @media (max-width: 767px) {
   .section_blog {
@@ -8691,7 +8694,7 @@ Last change:	04/21/2017
 @media (max-width: 767px) {
   .section_blog .section_title:before {
     font-size: 60px;
-    letter-spacing: 10px;
+    letter-spacing: 90px;
   }
 }
 .section_blog .blog__item {
@@ -8948,7 +8951,8 @@ Last change:	04/21/2017
 }
 /*** 15. Section: Map-heading ***/
 .section_map-heading {
-  /* background: url(../img/map_bg.jpg) no-repeat center center / cover; */
+  background: url(../img/map_bg.jpg) no-repeat center center / cover;
+  /* background: black; */
   background-attachment: fixed;
   text-align: center;
   position: relative;
@@ -9554,6 +9558,99 @@ Last change:	04/21/2017
     font-size: 17px;
   }
 }
+/*** blog page side bar style ***/
+.section_blog .blog__sidebar .sidebar__item {
+  background: #ffffff;
+  border: 1px solid rgba(215, 215, 215, 0.5);
+  padding: 30px;
+  margin: 0px 0;
+}
+@media (max-width: 991px) {
+  .section_blog .blog__sidebar .sidebar__item {
+    padding: 15px;
+  }
+}
+.section_blog .blog__sidebar .sidebar__item .subheading {
+  color: #1b2d2f;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  letter-spacing: 0.05em;
+}
+.section_blog .blog__sidebar .sidebar__item .search-form {
+  margin-bottom: 30px;
+}
+.section_blog .blog__sidebar .sidebar__item .search-form .btn-search > i {
+  font-size: 20px;
+}
+
+.section_blog .blog__sidebar .sidebar__item .categories {
+  list-style: none;
+  padding: 0;
+}
+.section_blog .blog__sidebar .sidebar__item .categories > li {
+  margin: 10px 0;
+}
+.section_blog .blog__sidebar .sidebar__item .categories > li > a {
+  text-decoration: none;
+  color: #1b2d2f;
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s;
+}
+.section_blog .blog__sidebar .sidebar__item .categories > li > a:hover {
+  color: #f1ae2b;
+  margin-left: 6px;
+}
+
+.section_blog .blog__sidebar .sidebar__item .tags {
+  padding: 0;
+  font-style:italic;
+  margin-bottom: 30px;
+  list-style: none;
+}
+.section_blog .blog__sidebar .sidebar__item .tags > li {
+  display: inline-block;
+  padding-right: 12px;
+  padding-bottom: 5px;
+}
+.section_blog .blog__sidebar .sidebar__item .tags > li > a {
+  color: #1b2d2f;
+  text-decoration: none;
+  -webkit-transition: color 0.3s;
+          transition: color 0.3s;
+}
+.section_blog .blog__sidebar .sidebar__item .tags > li > a:hover {
+  color: #f1ae2b;
+}
+.section_blog .blog__sidebar .sidebar__item .social__icons {
+  padding: 0;
+  margin: 0;
+}
+@media (max-width: 991px) {
+  .section_blog .blog__sidebar .sidebar__item .social__icons {
+    margin-bottom: 10.5px;
+  }
+}
+.section_blog .blog__sidebar .sidebar__item .social__icons .social-icons__item {
+  display: inline-block;
+  padding-right: 30px;
+  font-size: 17px;
+}
+.section_blog .blog__sidebar .sidebar__item .social__icons .social-icons__item > a {
+  display: block;
+  text-decoration: none;
+  color: #666666;
+  -webkit-transition: color 0.3s;
+          transition: color 0.3s;
+}
+.section_blog .blog__sidebar .sidebar__item .social__icons .social-icons__item > a:hover {
+  color: #f1ae2b;
+}
+@media (max-width: 767px) {
+  .section_blog .blog__sidebar .sidebar__item .social__icons .social-icons__item > a {
+    font-size: 17px;
+  }
+}
+
 /*** . Section: Contacts ***/
 .section_contacts {
   padding: 80px 0;

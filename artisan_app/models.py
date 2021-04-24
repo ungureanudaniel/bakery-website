@@ -74,6 +74,7 @@ class Slogan(models.Model):
 class NewsletterUser(models.Model):
     email = models.EmailField(max_length=200)
     conf_num =  models.CharField(max_length=15)
+    voucher_prize = models.CharField(max_length=10)
     confirmed = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -107,7 +108,7 @@ class ContactData(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}'.format(self.contact_email)
+        return '{}'.format(self.contact_author)
 
 #-------------------------------EVENTS DATA-------------------------------------
 class Event(models.Model):
@@ -192,7 +193,7 @@ class BlogPost(models.Model):
     text = RichTextField(blank=True, null=True)
     category = models.ForeignKey(BlogCategory, related_name='category', on_delete=models.SET_NULL, blank=True, null=True)
     # comment_count = models.IntegerField(default=0)
-    likes = models.ManyToManyField(User, related_name="blog_posts")
+    likes = models.ManyToManyField(User, related_name="blog_post_likes")
     views_count = models.IntegerField(default=0)
     featured = models.BooleanField()
     slug = models.SlugField(default='', editable=False, max_length=200, null = False)

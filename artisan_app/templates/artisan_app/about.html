@@ -132,7 +132,7 @@
           <div class="row">
             <div class="col-sm-12">
               <h1 class="slogan_title">&#8722; {{ slogans.brand }} &#8722;</h1>
-              <p class="slogan_caption">{{ slogans.text|safe }}</p>
+              <p class="slogan_caption">{{ slogans.text|striptags }}</p>
             </div>
           </div> <!-- .row -->
         </div> <!-- .container -->
@@ -152,7 +152,7 @@
           </div>
           <div class="row">
             {% for people in team %}
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <div class="team__item">
                 <div class="team__item_photo">
                   <img class="img-responsive" src="{{ people.photo.url }}" alt="...">
@@ -191,8 +191,8 @@
                 <a type="button" href="{% url 'contacts' %}" class="btn btn-default">Join now</a>
               </div>
             </div> -->
-          </div> <!-- .row -->
-        </div> <!-- .container -->
+          <!-- </div> <!-- .row -->
+        <!-- </div> <!-- .container -->
       <!-- </section> -->
 {% endblock %}
 

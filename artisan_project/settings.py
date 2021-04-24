@@ -170,21 +170,23 @@ EMAIL_PORT = os.environ.get("EMAIL_PORT")
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
-#---------------------MAILCHIMP NEWSLETTER SUBSCRIPTION-------------------------
-# MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
-# MAILCHIMP_DATA_CENTER = os.environ.get('MAILCHIMP_DATA_CENTER')
-# MAILCHIMP_EMAIL_LIST_ID = os.environ.get('MAILCHIMP_EMAIL_LIST_ID')
-#-------------------SENDGRID NEWSLETTER EMAIL-----------------------------------
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'apikey'
-# SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
-# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-# FROM_EMAIL = 'contact@artisanbakery.ro'
+#------------------------MESSAGES SETTINGS--------------------------------------
+try:
+    from django.contrib.messages import constants as messages
+    MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-info',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+    }
+except Exception as e:
+    pass
+#------------------- NEWSLETTER EMAIL-----------------------------------
+FROM_EMAIL = 'contact@artisanbakery.ro'
 
 # Toggle sandbox mode (when running in DEBUG mode)
-SENDGRID_SANDBOX_MODE_IN_DEBUG=False
-
-# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
-SENDGRID_ECHO_TO_STDOUT=True
+# SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+#
+# # echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
+# SENDGRID_ECHO_TO_STDOUT=True

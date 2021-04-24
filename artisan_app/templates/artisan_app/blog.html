@@ -61,7 +61,9 @@
 
               <!-- Breadcrumbs -->
               <ol class="breadcrumb">
-                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'home' %}">Acasa</a></li>
+                <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+
                 <li class="active">Blog</li>
               </ol>
 
@@ -76,7 +78,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
-              <h2 class="section_title">&#8722; Stories &#8722;</h2>
+              <h2 class="section_title">&#8722; Postari &#8722;</h2>
               <hr class="section_title_line">
               <!-- <p class="section_caption">Read about our latest news, events and much more about life of our friendly family</p> -->
               <p class="section_caption">Citeste cele mai noi stiri despre noi, despre retete, evenimente si multe altele. </p>
@@ -104,132 +106,53 @@
                   <div class="blog-item__text">
                     {{ post.text|safe|truncatechars:200 }}
                   </div>
-                  <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#table,</a> <a href="#">#food,</a> <a href="#">#The Artisan Bakery</a></p>
+                  <!-- <input type="text" name="tags" data-role="tagsinput" class="form-control" id="tags" name="tags" value="{% for tag in post.tags.all %}{{ tag }},{% endfor %}"> -->
+                  <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i>{% for tag in post.tags.all %} <a href="">#{{ tag }} </a> {% endfor %}</p>
                 </div> <!-- / .blog-item__content -->
               </div> <!-- / .blog__item -->
             </div>
             {% endfor %}
-            <!-- <div class="col-sm-6 col-md-4">
-              <div class="blog__item blog__item1">
-                <div class="blog-item__img">
-                  <img src="{% static 'img/gallery_3.jpg' %}" class="img-responsive" alt="...">
-                </div>
-                <div class="blog-item__content">
-                  <a href="#" class="blog-item__title">
-                    <h3>Features of Spanish wine</h3>
-                  </a>
-                  <div class="blog-item__info">
-                    <ul class="item-info__list">
-                      <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                      <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 5 Comments</li>
-                      <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 2 hours ago</li>
-                    </ul>
-                  </div>
-                  <div class="blog-item__text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                  </div>
-                  <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#cook,</a> <a href="#">#recipe,</a> <a href="#">#groggery</a></p>
-                </div> <!-- / .blog-item__content --
-              </div> <!-- / .blog__item --
-            </div>
-            <div class="col-sm-12 col-md-4">
-              <div class="blog__item blog__item1">
-                <div class="blog-item__img">
-                  <img src="{% static 'img/gallery_5.jpg' %}" class="img-responsive" alt="...">
-                </div>
-                <div class="blog-item__content">
-                  <a href="#" class="blog-item__title">
-                    <h3>Interior and design</h3>
-                  </a>
-                  <div class="blog-item__info">
-                    <ul class="item-info__list">
-                      <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                      <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 7 Comments</li>
-                      <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 5 hours ago</li>
-                    </ul>
-                  </div>
-                  <div class="blog-item__text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                  </div>
-                  <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#bar,</a> <a href="#">#cafe,</a> <a href="#">#groggery</a></p>
-                </div> <!-- / .blog-item__content --
-              </div> <!-- / .blog__item --
-            </div>
-          </div> <!-- .row --
-          <div class="row">
-            <div class="col-sm-6 col-md-4">
-              <div class="blog__item blog__item1">
-                <div class="blog-item__img">
-                  <img src="{% static 'img/gallery_4.jpg' %}" class="img-responsive" alt="...">
-                </div>
-                <div class="blog-item__content">
-                  <a href="#" class="blog-item__title">
-                    <h3>Cafe as a house</h3>
-                  </a>
-                  <div class="blog-item__info">
-                    <ul class="item-info__list">
-                      <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                      <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 10 Comments</li>
-                      <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 12 hours ago</li>
-                    </ul>
-                  </div>
-                  <div class="blog-item__text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                  </div>
-                  <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#table,</a> <a href="#">#food,</a> <a href="#">#groggery</a></p>
-                </div> <!-- / .blog-item__content --
-              </div> <!-- / .blog__item --
-            </div>
-            <div class="col-sm-6 col-md-4">
-              <div class="blog__item blog__item1">
-                <div class="blog-item__img">
-                  <img src="{% static 'img/gallery_10.jpg' %}" class="img-responsive" alt="...">
-                </div>
-                <div class="blog-item__content">
-                  <a href="#" class="blog-item__title">
-                    <h3>Our food traditions</h3>
-                  </a>
-                  <div class="blog-item__info">
-                    <ul class="item-info__list">
-                      <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                      <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 5 Comments</li>
-                      <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 2 hours ago</li>
-                    </ul>
-                  </div>
-                  <div class="blog-item__text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                  </div>
-                  <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#cook,</a> <a href="#">#recipe,</a> <a href="#">#groggery</a></p>
-                </div> <!-- / .blog-item__content --
-              </div> <!-- / .blog__item --
-            </div>
-            <div class="col-sm-12 col-md-4">
-              <div class="blog__item blog__item1">
-                <div class="blog-item__img">
-                  <img src="{% static 'img/gallery_7.jpg' %}" class="img-responsive" alt="...">
-                </div>
-                <div class="blog-item__content">
-                  <a href="#" class="blog-item__title">
-                    <h3>Let's cook together!</h3>
-                  </a>
-                  <div class="blog-item__info">
-                    <ul class="item-info__list">
-                      <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> by John Doe</li>
-                      <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i> 2 Comments</li>
-                      <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i> 7 hours ago</li>
-                    </ul>
-                  </div>
-                  <div class="blog-item__text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quis quia laudantium accusantium, sint, perspiciatis magni illum deserunt mollitia quaerat doloribus deleniti incidunt consequuntur earum fuga dolorum consequatur corrupti adipisci.
-                  </div>
-                  <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">#bar,</a> <a href="#">#cafe,</a> <a href="#">#groggery</a></p>
-                </div> <!-- / .blog-item__content --
-              </div> <!-- / .blog__item --
-            </div> -->
-          </div> <!-- .row -->
-          </div class="row">
-            <div class="text-center">
-              <button type="button" class="btn btn-default">More posts</button>
+
+            <!-- side bar ---------------- -->
+            <div class="col-sm-4">
+              <div class="blog__sidebar">
+                <div class="sidebar__item">
+                  <!-- <h4 class="subheading">Search</h4> -->
+                  <h4 class="subheading">Cautare</h4>
+
+                  <form class="search-form" role="search" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="keyword" placeholder="Enter keywords">
+                    </div>
+                    <a href="{% url 'search_blogposts' %}" class="btn btn-default">Cautare</a>
+                  </form> <!-- .search-form -->
+                  <!-- <h4 class="subheading">Categories</h4> -->
+                  <h4 class="subheading">Categorii</h4>
+
+                  <ul class="categories">
+                    {% for cat in cats %}
+                    <li><a href="#">{{ cat.name|title }}</a></li>
+                    {% endfor %}
+                  </ul> <!-- .categories -->
+                </div> <!-- .sidebar__item -->
+
+                <div class="sidebar__item">
+                  <h4 class="subheading" style="font-style:italic;">Tags</h4>
+                  <ul class="tags">
+
+                    <li class=""><a href="#">#copii </a><a href=""> #tort </a><a href=""> #retete </a><a href=""> #lifestyle </a><a href=""> #calatorii </a><a href=""> #slowfood </a></li>
+
+                  </ul>
+
+                  <h4 class="subheading" style="font-style:italic;">Follow us</h4>
+                  <ul class="social__icons">
+                    <li class="social-icons__item"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
+                    <li class="social-icons__item"><a href="https://www.facebook.com/artisanbakerybrasov"><i class="icon ion-social-facebook-outline"></i></a></li>
+                    <li class="social-icons__item"><a href="https://www.instagram.com/artisanbakerybrasov/"><i class="icon ion-social-instagram-outline"></i></a></li>
+                  </ul> <!-- .social__icons -->
+                </div> <!-- .sidebar__item -->
+              </div> <!-- .blog__sidebar -->
             </div>
           </div> <!-- .row -->
         </div> <!-- .container -->
