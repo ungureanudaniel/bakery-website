@@ -1,24 +1,20 @@
 from django.conf import settings
 import os
-import json
+
 from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 from django.template import loader
 from django.utils.html import strip_tags
-from django.conf import settings
 import random
 from django.contrib.auth.models import User
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
 from django.db.models import Q, Count
-from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Team, Gallery, RecipeCategory, Menu, Slogan, Review, Story, Event, BlogPost, Comment, NewsletterUser, OurFact, ContactData, BlogCategory
 from taggit.models import Tag
 from .forms import CommentForm, SendNewsletterForm
-from .utils import fb_followers_count
+# from .utils import fb_followers_count
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect
 import datetime
 
 
